@@ -58,7 +58,6 @@ const sketch = (p5) => {
 
 			if(Math.sin(tempo)>0) {
 				if(triggers[i]==false) {
-					//synths[i].triggerAttackRelease((num-i + 1) * 100, "8n");
 					synths[i].triggerAttackRelease(tone.Midi(i+1 + 60).toFrequency(), "8n");
 					colors[i] = 255;
 				}
