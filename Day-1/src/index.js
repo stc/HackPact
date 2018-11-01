@@ -14,11 +14,12 @@ const sketch = (p5) => {
  			},
  			"envelope" : {
  				"attack" : 0.03,
-				"decay" : 0.04,
+				"decay" : 0.5,
 				"sustain"  : 0.1,
 				"release"  : 0.4
  			}
 		}).toMaster() );
+		synths[i].volume.value = -20;
 	}
 		
 	p5.setup = () => {
@@ -57,7 +58,8 @@ const sketch = (p5) => {
 
 			if(Math.sin(tempo)>0) {
 				if(triggers[i]==false) {
-					synths[i].triggerAttackRelease((num-i) * 100, "8n");
+					//synths[i].triggerAttackRelease((num-i + 1) * 100, "8n");
+					synths[i].triggerAttackRelease(tone.Midi(i+1 + 60).toFrequency(), "8n");
 					colors[i] = 255;
 				}
 				triggers[i] = true;
