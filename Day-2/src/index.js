@@ -61,7 +61,7 @@ const sketch = (p5) => {
 				}
 			}
 			this.pindex = this.index;
-			this.alpha -= 4;
+			this.alpha -= 2;
 		}
 	}
 
@@ -103,22 +103,22 @@ const sketch = (p5) => {
 
 		let fm2 = new tone.FMSynth({
 				"harmonicity"  : 30 ,
-				"modulationIndex"  : 82 ,
+				"modulationIndex"  : 22 ,
 				"detune"  : 0 ,
 				"oscillator"  : {
 					"type"  : "sine"
 				}  ,
 				"envelope"  : {
-					"attack"  : 0 ,
-					"decay"  : 0.01 ,
+					"attack"  : 0.003 ,
+					"decay"  : 0.03 ,
 					"sustain"  : 0.03 ,
-					"release"  : 0.1
+					"release"  : 1
 				}  ,
 				"modulation"  : {
 					"type"  : "square"
 				}  ,
 				"modulationEnvelope"  : {
-					"attack"  : 0 ,
+					"attack"  : 0.01 ,
 					"decay"  : 0.2 ,
 					"sustain"  : 0.1 ,
 					"release"  : 1
@@ -129,14 +129,14 @@ const sketch = (p5) => {
 
 		let fm3 = new tone.FMSynth({
 				"harmonicity"  : 10 ,
-				"modulationIndex"  : 42 ,
+				"modulationIndex"  : 2 ,
 				"detune"  : 0 ,
 				"oscillator"  : {
 					"type"  : "square"
 				}  ,
 				"envelope"  : {
-					"attack"  : 0 ,
-					"decay"  : 0.01 ,
+					"attack"  : 0.001 ,
+					"decay"  : 0.02 ,
 					"sustain"  : 0.03 ,
 					"release"  : 2
 				}  ,
@@ -144,7 +144,7 @@ const sketch = (p5) => {
 					"type"  : "square"
 				}  ,
 				"modulationEnvelope"  : {
-					"attack"  : 0 ,
+					"attack"  : 0.01 ,
 					"decay"  : 0.2 ,
 					"sustain"  : 0.1 ,
 					"release"  : 1
@@ -155,8 +155,9 @@ const sketch = (p5) => {
 	}
 
 	p5.draw = () => {
-		p5.camera(p5.sin(p5.frameCount/100) * 100, 0, 400, 0, 0, 0, 0, 1, 0);
+		p5.camera(0, 0, 400, 0, 0, 0, 0, 1, 0);
 		p5.background(240);
+		p5.rotateY(p5.frameCount/600);
 		s1.draw();
 		s2.draw();
 		s3.draw();
