@@ -29,7 +29,7 @@ const sketch = (p5) => {
 			if(!this.fade) {
 				p5.fill(0);
 			} else {
-				p5.fill(255, this.fadecol);
+				p5.fill(255, 0, 0, this.fadecol);
 				this.fadecol-=4;
 				if(this.fadecol <= 0) this.canremove = true;
 			}
@@ -39,7 +39,7 @@ const sketch = (p5) => {
 			p5.sphere(this.size);
 			p5.pop();
 
-			p5.stroke(0,40);
+			p5.stroke(0,100);
 			p5.line(this.startpos.x,this.startpos.y, this.startpos.z, this.startpos.x,0, this.startpos.z);
 		}
 	}
@@ -60,6 +60,7 @@ const sketch = (p5) => {
 
 	p5.setup = () => {
 		let canvas = p5.createCanvas(800,800, p5.WEBGL);
+		p5.smooth();
 	}
 
 	p5.draw = () => {
@@ -71,7 +72,7 @@ const sketch = (p5) => {
 		p5.push();
 		p5.rotateX(p5.PI/2);
 		p5.noFill(0);
-		p5.stroke(0,40);
+		p5.stroke(0,200);
 		p5.rect(-200,-200,400,400);
 		p5.line(0,-200,0,0,200,0);
 		p5.translate(0,0,200);
