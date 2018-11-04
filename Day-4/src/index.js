@@ -39,7 +39,7 @@ const sketch = (p5) => {
 			this.ptick = 0;
 			this.tempo = tempo;
 			this.fm = new tone.FMSynth({
-				"harmonicity"  : 1 ,
+				"harmonicity"  : 4 ,
 				"modulationIndex"  : p5.random(10) + 2 ,
 				"detune"  : 0 ,
 				"oscillator"  : {
@@ -48,20 +48,20 @@ const sketch = (p5) => {
 				"envelope"  : {
 					"attack"  : 0.003 ,
 					"decay"  : 0.1 ,
-					"sustain"  : 5 ,
+					"sustain"  : 2 ,
 					"release"  : 5
 				}  ,
 				"modulation"  : {
 					"type"  : "square"
 				}  ,
 				"modulationEnvelope"  : {
-					"attack"  : 0.2 ,
-					"decay"  : 0.2 ,
+					"attack"  : 0.02 ,
+					"decay"  : 0.08 ,
 					"sustain"  : 0.3 ,
 					"release"  : 0.5
 				}
 			}).connect(freeverb);
-		this.fm.volume.value = -40;
+		this.fm.volume.value = -25;
 			
 		}
 
@@ -117,7 +117,7 @@ const sketch = (p5) => {
 			p5.push();
 			p5.rotateX(p5.PI/3);
 			for(let i=0; i<this.gates.length; i++) {
-				this.gates[i].draw();
+				if(i>0)this.gates[i].draw();
 			}
 			this.drawArcs();
 
@@ -146,8 +146,8 @@ const sketch = (p5) => {
 	p5.setup = () => {
 		let canvas = p5.createCanvas(800,800, p5.WEBGL);
 		p5.smooth();
-		G1 = new GateTree(1000);
-		G2 = new GateTree(666);
+		G1 = new GateTree(900);
+		G2 = new GateTree(566);
 	}
 
 	p5.draw = () => {
@@ -160,6 +160,12 @@ const sketch = (p5) => {
 		p5.rotateZ(400/100);
 		G2.draw();
 		p5.pop();
+
+		p5.noStroke();
+		p5.fill(0,10);
+		p5.sphere(20)
+		p5.fill(0,20);
+		p5.sphere(8)
 	}
 }
 
