@@ -5,6 +5,7 @@ A one month experimentation with sound, algorithms and unconventional sequencers
 ### Aesthetic constrains:
 - sound should affect the graphics and/or vice versa
 - more problem framing, less problem solving
+- escape the comfort zone: think in space (3d) instead of a 2d canvas 
 
 ### Technological constrains:
 - code is open sourced & reusable
