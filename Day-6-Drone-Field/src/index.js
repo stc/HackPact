@@ -41,9 +41,7 @@ const sketch = (p5) => {
 		}
 	}
 
-
-	let field;
-	
+	let field;	
 	let NODES = 16;
 
 	tone.Master.volume.value = -25;
