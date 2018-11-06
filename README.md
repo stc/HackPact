@@ -1,5 +1,5 @@
 # HackPact
-A one month experimentation with sound, algorithms and unconventional sequencers
+A one month experimentation with sound, algorithms, visual music and unconventional sequencers
 (See each folder for specific info)
 
 ### Aesthetic constrains:
