@@ -1,7 +1,8 @@
-### Day 6 - Drones
+### Day 7 - Self Playing Game (reinforcement learning)
 
 Inspiration
-- [Buddha Machine](http://www.fm3buddhamachine.com/v2/) by FM3
+- [Reunion](http://johncage.org/reunion/index.html) by Marcel Duchamp & John Cage
+- [Automatic Tic Tac Toe](https://github.com/louischatriot/auto-ttt) in javascript
 
 ### Install
 `npm install --save`
