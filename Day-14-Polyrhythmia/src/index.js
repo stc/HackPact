@@ -28,11 +28,11 @@ const sketch = (p5) => {
             //p5.rotateZ(this.rotation + this.counter * (18 - this.sequence.length) / 50);
             //p5.rotateX(this.id * 30);
             p5.noFill();
-            p5.stroke(0,180);
+            p5.stroke(0,30);
             p5.push();
             //p5.rotateY(p5.radians(90));
             p5.line(0,-this.r + 10,0,0,-this.r - 10,0);
-            p5.line(0,-this.r,-10,0,-this.r,10);
+            p5.line(0,-this.r,-100,0,-this.r,100);
             p5.pop();
             //p5.ellipse(0,0, this.d, this.d);
 
