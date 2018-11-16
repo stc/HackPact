@@ -2,7 +2,7 @@ import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
 
 const sketch = (p) => {
-    var speed = 0.005;
+    var speed = 0.001;
     var circleSize = 20;
     var col = 1;
     var drawCirlces = false;
@@ -10,11 +10,12 @@ const sketch = (p) => {
     var weaveFactors ;
     let loaded = false;
 
-    var fft = new Tone.FFT(256);
+
+    var fft = new Tone.FFT(64);
     var player = new Tone.GrainPlayer({
             "url" : "../sound/tompa.[mp3|ogg]",
             "loop" : true,
-            "grainSize" : 0.1,
+            "grainSize" : 0.01,
             "overlap" : 0.05,
             "detune" : 2000
         }).fan(fft).toMaster();
@@ -28,37 +29,38 @@ const sketch = (p) => {
     }
 
     p.draw = () => {
-        p.camera(p.cos(p.frameCount/80) * 150,-200 + p.sin(p.frameCount/120) * 150, 200, 0, 0, 0, 0, 1, 0);
+        p.camera(0,150, 300, 0, 0, 0, 0, 1, 0);
         p.background(240);
         p.smooth(); 
         p.noFill();
 
-        p.rotateZ(p.radians(30));
+        p.rotateX(p.radians(30));
+        p.translate(-100,-200,100);
 
         
         var fftValues = fft.getValue();
-        for (var x = 0; x < 16; x += 1) {
-            for (var y = 0; y < 16; y+= 1) {
-                index++;
+        for (var x = 0; x < 8; x += 1) {
+            for (var y = 0; y < 8; y+= 1) {
+                //index++;
                 
                 if(index>fftValues.length) index = 0;
-                    var circleCenter = p.createVector(x * 10, y * 10);
-                    weaveFactors = p.createVector(1 + p.sin(p.frameCount/300) * 150,1 + p.cos(p.frameCount/300) * 150).sub(p.width/2,p.height/2).mult(1/2000);
+                    var circleCenter = p.createVector(x * 30, y * 30);
+                    weaveFactors = p.createVector(p.sin(p.frameCount/300) * 300,p.cos(p.frameCount/300) * 300).sub(0,0,0).mult(1/1000);
                     var dotCenter = newVec(x,y);
                     dotCenter.add(circleCenter);
                     
                 p.fill(col);
                 
-                p.stroke(0,80);
-                p.line(dotCenter.x, dotCenter.y,(fftValues[index]), dotCenter.x, dotCenter.y, -300)
+                p.stroke(0,40);
+                p.line(dotCenter.x, dotCenter.y,(fftValues[x*y] * 2), dotCenter.x, dotCenter.y, -300)
                 p.push();
                 p.push();
                 p.translate(dotCenter.x, dotCenter.y, -300);
                 p.fill(255);
                 p.noStroke();
-                p.sphere(circleSize/8);
+                p.sphere(circleSize/4);
                 p.pop();
-                p.translate(dotCenter.x, dotCenter.y, (fftValues[index]));
+                p.translate(dotCenter.x, dotCenter.y, (fftValues[x*y]*2));
                 p.fill(0);
                 p.sphere(circleSize/8);
                 p.pop();
@@ -66,13 +68,17 @@ const sketch = (p) => {
         }
 
         if(loaded) {
-            player.grainSize = 0.05 + p.abs((p.sin(p.frameCount/300)) / 10);
+            player.grainSize = 0.05 + (p.sin(p.frameCount/100) + 1);
         }
     }
 
     p.keyPressed = () => {
         loaded = true;
         player.start();
+    }
+
+    p.mousePressed = () => {
+        //sampler.detune = p.ceil(p.random(4)) * 1000;
     }
 
     function newVec(x,y) {
