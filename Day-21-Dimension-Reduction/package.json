@@ -1,0 +1,26 @@
+{
+  "name": "Focus",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^0.13.4",
+    "p5": "^0.7.2",
+    "tfjs": "^0.6.0",
+    "tone": "^0.12.80",
+    "tsne": "^1.0.1"
+  }
+}

@@ -185,7 +185,7 @@ const sketch = (p) => {
 	  //p.rotateZ(p.radians(90));
 	  p.translate(this.xPosition, this.yPosition + offsetYPosition+size, -this.zPosition/2);
 	  
-	  p.box(size, size*0.1, size*0.1);
+	  p.box(size*2, size*0.1, size*0.6);
 	  p.pop();
 	  p.noFill();
 	}
@@ -201,8 +201,8 @@ const sketch = (p) => {
 	  p.translate(this.xPosition, this.yPosition, this.zPosition);
 	  p.rotateX(p.radians(90));
 	  p.rotate(rotationAngle);
-	  p.box(size, size * 0.15, size * 0.15);
-	  p.box(size * 0.15, size, size * 0.15);
+	  p.box(size * 2, size * 0.15, size * 0.15);
+	  p.box(size * 0.15, size*2, size * 0.15);
 	  p.pop();
 	  p.noFill();
 	  
