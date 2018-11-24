@@ -106,22 +106,22 @@ const sketch = (p) => {
             let tick = p.floor(p.millis()/300);
             if(ptick!=tick) {
                 let rnd = p.random(2);
-                if(rnd > 0.3) {
+                if(rnd > 0.5) {
                     alpha = 255;
 
-                    piano.triggerAttackRelease(Tone.Midi(p.floor(val1*100) + 10).toFrequency(),"128n");
-                    piano.triggerAttackRelease(Tone.Midi(p.floor(val2*100) + 10).toFrequency(),"128n");
+                    piano.triggerAttackRelease(Tone.Midi(p.floor(val1*100) + 10).toFrequency(),"64n");
+                    piano.triggerAttackRelease(Tone.Midi(p.floor(val2*100) + 10).toFrequency(),"32n");
                     
                 }
             }
             ptick = tick;
 
-            let tick2 = p.floor(p.millis()/200);
+            let tick2 = p.floor(p.millis()/400);
             if(ptick2!=tick2) {
                 let rnd = p.random(2);
-                if(rnd > 0.3) {
+                if(rnd > 0.6) {
                     alpha = 255;
-                    piano.triggerAttackRelease(Tone.Midi(p.floor(val1*100) + 10).toFrequency(),"64n");
+                    piano.triggerAttackRelease(Tone.Midi(p.floor(val1*100) + 10).toFrequency(),"8n");
                     //piano.triggerAttackRelease(Tone.Midi(p.floor(val2*100) + 30).toFrequency(),"128n");
                     
                 }

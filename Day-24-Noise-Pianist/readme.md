@@ -1,7 +1,7 @@
-### Day 23 - Prime Distribution
+### Day 24 - Noise Piano
 
 Inspiration
-- [Poeme Symphonique for 100 Metronomes](https://www.youtube.com/watch?v=-mUv705xj3U) by György Ligeti
+- [The Cat Piano](https://www.abc.net.au/radionational/programs/archived/soundproof/features/museum-of-imaginary-musical-instruments/cat-piano/8103042) 
 
 ### Install
 `npm install --save`
