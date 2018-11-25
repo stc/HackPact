@@ -4,9 +4,11 @@ import Tone from 'tone';
 const sketch = (p) => {
     let noiseScale=0.03;
     let n=0.00;
-    let d=0.5; 
+    let d=0.6; 
 
     let piano;
+
+    let melody = [40 -12, 43 -12, 45 - 12, 47 -12, 49 -12, 52 - 12, 40, 43, 45, 47, 49, 52, 40 + 12, 43 + 12, 45 + 12, 49 + 12, 50 + 12, 52 + 12, 40 + 24, 43 + 24, 45 + 24, 49 + 24, 50 + 24, 52 + 24, 40 + 36, 43 + 36, 45 + 36, 47 + 36, 49 + 36, 52 + 36, 40 + 48, 43 + 48, 45 + 48, 47 + 48, 49 + 48, 52 + 48,40 + 60, 43 + 60, 45 + 60, 47 + 60, 49 + 48, 52 + 60]
 
     p.preload = () => {
         piano = new Tone.Sampler({
@@ -108,9 +110,8 @@ const sketch = (p) => {
                 let rnd = p.random(2);
                 if(rnd > 0.5) {
                     alpha = 255;
-
-                    piano.triggerAttackRelease(Tone.Midi(p.floor(val1*100) + 10).toFrequency(),"64n");
-                    piano.triggerAttackRelease(Tone.Midi(p.floor(val2*100) + 10).toFrequency(),"32n");
+                    piano.triggerAttackRelease(Tone.Midi(melody[p.ceil(val1*42)] + 6).toFrequency(),"132n");
+                    piano.triggerAttackRelease(Tone.Midi(melody[p.ceil(val2*42)] + 6).toFrequency(),"132n");
                     
                 }
             }
@@ -121,9 +122,8 @@ const sketch = (p) => {
                 let rnd = p.random(2);
                 if(rnd > 0.6) {
                     alpha = 255;
-                    piano.triggerAttackRelease(Tone.Midi(p.floor(val1*100) + 10).toFrequency(),"8n");
-                    //piano.triggerAttackRelease(Tone.Midi(p.floor(val2*100) + 30).toFrequency(),"128n");
-                    
+                    piano.triggerAttackRelease(Tone.Midi(melody[p.ceil(val2*42)] + 6).toFrequency(),"64n");
+                    //piano.triggerAttackRelease(Tone.Midi(p.floor(val2*100) + 30).toFrequency(),"128n");  
                 }
             }
             ptick2 = tick2;
