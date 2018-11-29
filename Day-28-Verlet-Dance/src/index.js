@@ -93,7 +93,7 @@ const sketch = (p) => {
                     "decay"  : 0.1 ,
                     "sustain"  : 0.2 ,
                     "release"  : 0.22
-                }
+                }, "volume" : -6
                 }).connect(chorus));
 
                 this.drums.push(new Tone.MembraneSynth({
