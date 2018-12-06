@@ -1,7 +1,7 @@
 import p5 from 'p5/lib/p5.min';
-import tone from 'tone';
+import Tone from 'tone';
 
-const sketch = (p5) => {	
+const sketch = (p) => {	
 	class Sequence {
 		constructor(mySynth, yoffset, rate, pitch) {
 			this.index = 1;
@@ -13,50 +13,50 @@ const sketch = (p5) => {
 			this.rate = rate;
 			this.notes = [ 38 + pitch, 40 + pitch, 43 + pitch, 45 + pitch, 47 + pitch, 50 + pitch, 52 + pitch ];
 			for(let i=0; i< this.num; i++) {
-				let v = p5.createVector(i * 10, p5.random(-50,50), -p5.random(-50,50));
+				let v = p.createVector(i * 10, p.random(-50,50), -p.random(-50,50));
 				this.p1.push(v);
 			}
 			this.startPos = this.p1[0].copy();
-			this.tpos = p5.createVector(this.p1[this.index].x, this.p1[this.index].y + this.yoffset, this.p1[this.index].z);
+			this.tpos = p.createVector(this.p1[this.index].x, this.p1[this.index].y + this.yoffset, this.p1[this.index].z);
 			this.synth = mySynth;
 		}
 
 		draw() {
 			for(let i=0; i<this.num; i++) {
-				p5.push();
-				p5.translate(this.p1[i].x, this.p1[i].y + this.yoffset, this.p1[i].z);
-				p5.fill(0);
-				p5.noStroke();
-				p5.sphere(2);	
-				p5.pop();
+				p.push();
+				p.translate(this.p1[i].x, this.p1[i].y + this.yoffset, this.p1[i].z);
+				p.fill(0);
+				p.noStroke();
+				p.sphere(2);	
+				p.pop();
 				if(i<this.num-1) {
-					p5.stroke(0,100);
-					p5.line(this.p1[i].x, this.p1[i].y + this.yoffset, this.p1[i].z,this.p1[i+1].x, this.p1[i+1].y + this.yoffset, this.p1[i+1].z)
+					p.stroke(0,100);
+					p.line(this.p1[i].x, this.p1[i].y + this.yoffset, this.p1[i].z,this.p1[i+1].x, this.p1[i+1].y + this.yoffset, this.p1[i+1].z)
 				}
 			}
 		
-			p5.noStroke();
-			p5.fill(255,0,0,this.alpha);
-			p5.push();
+			p.noStroke();
+			p.fill(255,0,0,this.alpha);
+			p.push();
 			if(this.index>0) {
-				p5.translate( this.startPos.lerp(this.tpos, this.rate ) );
+				p.translate( this.startPos.lerp(this.tpos, this.rate ) );
 
 			} else {
-				p5.translate( this.startPos.lerp(this.tpos, 1 ) );
+				p.translate( this.startPos.lerp(this.tpos, 1 ) );
 			}
-			p5.sphere(3);
-			p5.pop();
+			p.sphere(3);
+			p.pop();
 
-			if( p5.dist(this.startPos.x,this.startPos.y + this.yoffset,this.tpos.x,this.tpos.y + this.yoffset) < 1 ) {
+			if( p.dist(this.startPos.x,this.startPos.y + this.yoffset,this.tpos.x,this.tpos.y + this.yoffset) < 1 ) {
 				this.index++;
 				if(this.index>this.num-1) this.index = 0;
-				this.tpos = p5.createVector(this.p1[this.index].x, this.p1[this.index].y + this.yoffset, this.p1[this.index].z);
+				this.tpos = p.createVector(this.p1[this.index].x, this.p1[this.index].y + this.yoffset, this.p1[this.index].z);
 			}
 
 			if(this.pindex != this.index) {
 				console.log("play " + this.index);
 				if(this.index !=undefined) {
-					this.synth.triggerAttackRelease(tone.Midi(this.notes[p5.floor(p5.random(this.num))]).toFrequency(), "4n");
+					this.synth.triggerAttackRelease(Tone.Midi(this.notes[p.floor(p.random(this.num))]).toFrequency(), "4n");
 					this.alpha = 255;
 				}
 			}
@@ -67,14 +67,14 @@ const sketch = (p5) => {
 
 	let s1, s2, s3;
 
-	p5.setup = () => {
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);
+	p.setup = () => {
+		let canvas = p.createCanvas(800,800, p.WEBGL);
 
-		var freeverb = new tone.Freeverb().toMaster();
+		var freeverb = new Tone.Freeverb().toMaster();
 		freeverb.dampening.value = 600;
 		freeverb.roomSize.value = 0.99;
 		
-		let fm1 = new tone.FMSynth({
+		let fm1 = new Tone.FMSynth({
 				"harmonicity"  : 1 ,
 				"modulationIndex"  : 2 ,
 				"detune"  : 0 ,
@@ -101,7 +101,7 @@ const sketch = (p5) => {
 		
 		s1 = new Sequence(fm1, 0, 0.01, 0);
 
-		let fm2 = new tone.FMSynth({
+		let fm2 = new Tone.FMSynth({
 				"harmonicity"  : 30 ,
 				"modulationIndex"  : 22 ,
 				"detune"  : 0 ,
@@ -127,7 +127,7 @@ const sketch = (p5) => {
 
 		s2 = new Sequence(fm2, -100, 0.05, 12);
 
-		let fm3 = new tone.FMSynth({
+		let fm3 = new Tone.FMSynth({
 				"harmonicity"  : 10 ,
 				"modulationIndex"  : 2 ,
 				"detune"  : 0 ,
@@ -154,10 +154,10 @@ const sketch = (p5) => {
 		s3 = new Sequence(fm3, 100, 0.03, 24);
 	}
 
-	p5.draw = () => {
-		p5.camera(0, 0, 400, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
-		p5.rotateY(p5.frameCount/600);
+	p.draw = () => {
+		p.camera(0, 0, 400, 0, 0, 0, 0, 1, 0);
+		p.background(240);
+		p.rotateY(p.frameCount/600);
 		s1.draw();
 		s2.draw();
 		s3.draw();

@@ -7,7 +7,7 @@ Inspirations
 ### Usage
 
 press `a` `s` `d` `f` `g` `h` `j` `k` `l` to add new node to the chain
-press `P` to train & play
+press `p` to train & play
 
 ### Install
 `npm install --save`

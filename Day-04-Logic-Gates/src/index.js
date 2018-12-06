@@ -1,7 +1,7 @@
 import p5 from 'p5/lib/p5.min';
-import tone from 'tone';
+import Tone from 'tone';
 
-const sketch = (p5) => {
+const sketch = (p) => {
 	let ptick = 0;
 	let index = 0;
 
@@ -11,23 +11,23 @@ const sketch = (p5) => {
 			this.state = state;
 		}
 		draw() {
-			p5.noStroke();
-			p5.push();
-			p5.translate(this.pos.x,this.pos.y,this.pos.z);
+			p.noStroke();
+			p.push();
+			p.translate(this.pos.x,this.pos.y,this.pos.z);
 
 			if(this.state == 0) {
-				p5.fill(255);
+				p.fill(255);
 			} else {
-				p5.fill(0);
+				p.fill(0);
 			}
 			
 			if(this.state == 0) {
-				p5.fill(0);
+				p.fill(0);
 			} else {
-				p5.fill(255);
+				p.fill(255);
 			}
-			p5.box(6);
-			p5.pop(); 
+			p.box(6);
+			p.pop(); 
 		}
 	}
 
@@ -38,9 +38,9 @@ const sketch = (p5) => {
 			this.index = 0;
 			this.ptick = 0;
 			this.tempo = tempo;
-			this.fm = new tone.FMSynth({
+			this.fm = new Tone.FMSynth({
 				"harmonicity"  : 4 ,
-				"modulationIndex"  : p5.random(10) + 2 ,
+				"modulationIndex"  : p.random(10) + 2 ,
 				"detune"  : 0 ,
 				"oscillator"  : {
 					"type"  : "sine"
@@ -66,28 +66,28 @@ const sketch = (p5) => {
 		}
 
 		addGates() {
-			this.gates.push( new Gate( p5.createVector(0, 0, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(-50, 100, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(50, 100, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(-75, 200, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(-25, 200, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(25, 200, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(75, 200, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(-87, 300, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(-62, 300, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(-37, 300, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(-12, 300, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(12, 300, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(37, 300, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(62, 300, 0), p5.floor(p5.random(2)) ) );
-			this.gates.push( new Gate( p5.createVector(87, 300, 0), p5.floor(p5.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(0, 0, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(-50, 100, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(50, 100, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(-75, 200, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(-25, 200, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(25, 200, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(75, 200, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(-87, 300, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(-62, 300, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(-37, 300, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(-12, 300, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(12, 300, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(37, 300, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(62, 300, 0), p.floor(p.random(2)) ) );
+			this.gates.push( new Gate( p.createVector(87, 300, 0), p.floor(p.random(2)) ) );
 		}
 
 		drawArcs() {
-			p5.stroke(0,120);
+			p.stroke(0,120);
 			for(let i=0; i<7; i++) {
-				p5.line(this.gates[i].pos.x,this.gates[i].pos.y,this.gates[i].pos.z,this.gates[i + i + 1].pos.x,this.gates[i + i + 1].pos.y,this.gates[i + i + 1].pos.z);
-				p5.line(this.gates[i].pos.x,this.gates[i].pos.y,this.gates[i].pos.z,this.gates[i + i + 2].pos.x,this.gates[i + i + 1].pos.y,this.gates[i + i + 1].pos.z);
+				p.line(this.gates[i].pos.x,this.gates[i].pos.y,this.gates[i].pos.z,this.gates[i + i + 1].pos.x,this.gates[i + i + 1].pos.y,this.gates[i + i + 1].pos.z);
+				p.line(this.gates[i].pos.x,this.gates[i].pos.y,this.gates[i].pos.z,this.gates[i + i + 2].pos.x,this.gates[i + i + 1].pos.y,this.gates[i + i + 1].pos.z);
 			}
 		}
 		
@@ -104,28 +104,28 @@ const sketch = (p5) => {
 				this.addGates();
 				this.index= 0;
 			}
-			this.fm.triggerAttackRelease(tone.Midi(notes[this.index]).toFrequency(), "16n");
+			this.fm.triggerAttackRelease(Tone.Midi(notes[this.index]).toFrequency(), "16n");
 		}
 
 		draw() {
-			let tick = p5.floor(p5.millis()/this.tempo);
+			let tick = p.floor(p.millis()/this.tempo);
 			if(this.ptick!=tick) {
 				this.nextStep();
 			}
 			this.ptick = tick;
 		
-			p5.push();
-			p5.rotateX(p5.PI/3);
+			p.push();
+			p.rotateX(p.PI/3);
 			for(let i=0; i<this.gates.length; i++) {
 				if(i>0)this.gates[i].draw();
 			}
 			this.drawArcs();
 
-			p5.fill(255,0,0, this.ta);
-			p5.noStroke();
-			p5.translate(this.gates[this.index].pos.x, this.gates[this.index].pos.y, this.gates[this.index].pos.z);
-			p5.box(7);
-			p5.pop();
+			p.fill(255,0,0, this.ta);
+			p.noStroke();
+			p.translate(this.gates[this.index].pos.x, this.gates[this.index].pos.y, this.gates[this.index].pos.z);
+			p.box(7);
+			p.pop();
 
 			this.ta -=10;
 		}
@@ -137,35 +137,34 @@ const sketch = (p5) => {
 	let notes = [ 38 + pitch, 40 + pitch, 43 + pitch, 45 + pitch, 47 + pitch, 50 + pitch, 52 + pitch,  
 					55 + pitch, 57 + pitch, 59 + pitch, 62 + pitch, 65 + pitch, 69 + pitch, 71 + pitch, 74 + pitch ];
 
-	var freeverb = new tone.Freeverb().toMaster();
+	var freeverb = new Tone.Freeverb().toMaster();
 		freeverb.dampening.value = 600;
 		freeverb.roomSize.value = 0.9;
 
 	
 
-	p5.setup = () => {
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);
-		p5.smooth();
+	p.setup = () => {
+		let canvas = p.createCanvas(800,800, p.WEBGL);
+		p.smooth();
 		G1 = new GateTree(900);
 		G2 = new GateTree(566);
 	}
 
-	p5.draw = () => {
-		//p5.camera(p5.millis()/100, -150, 400, 0, 0, 0, 0, 1, 0);
-		p5.camera(p5.millis()/300 - 100, p5.millis()/400 - 100, 600, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
+	p.draw = () => {
+		p.camera(p.mouseX - 100, p.mouseY - 100, 600, 0, 0, 0, 0, 1, 0);
+		p.background(240);
 		
 		G1.draw();
-		p5.push();
-		p5.rotateZ(400/100);
+		p.push();
+		p.rotateZ(400/100);
 		G2.draw();
-		p5.pop();
+		p.pop();
 
-		p5.noStroke();
-		p5.fill(0,10);
-		p5.sphere(20)
-		p5.fill(0,20);
-		p5.sphere(8)
+		p.noStroke();
+		p.fill(0,10);
+		p.sphere(20)
+		p.fill(0,20);
+		p.sphere(8)
 	}
 }
 
