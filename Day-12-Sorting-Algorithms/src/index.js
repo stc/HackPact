@@ -1,7 +1,7 @@
 import p5 from 'p5/lib/p5.min';
-import tone from 'tone';
+import Tone from 'tone';
 
-const sketch = (p5) => {
+const sketch = (p) => {
 	let count = 1 + 20;
 	let durationTime = 1200/count;
     
@@ -25,11 +25,11 @@ const sketch = (p5) => {
     
     let cElementB = 0;
 
-    let freeverb = new tone.Freeverb().toMaster();
+    let freeverb = new Tone.Freeverb().toMaster();
 	freeverb.dampening.value = 1600;
 	freeverb.roomSize.value = 0.92;
 
-    let synth1 = new tone.Synth({
+    let synth1 = new Tone.Synth({
 			"oscillator" : {
 				"type" : "amtriangle",
 				"harmonicity" : 0.5,
@@ -47,7 +47,7 @@ const sketch = (p5) => {
 		}).connect(freeverb);
 
     synth1.volume.value = -24;
-    let synth2 = new tone.Synth({
+    let synth2 = new Tone.Synth({
 			"oscillator" : {
 				"type" : "amtriangle",
 				"harmonicity" : 0.5,
@@ -64,62 +64,62 @@ const sketch = (p5) => {
 		}).connect(freeverb);
     synth2.volume.value = -24;
 
-	p5.setup = () => {
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);	
+	p.setup = () => {
+		let canvas = p.createCanvas(800,800, p.WEBGL);	
 		insertionSort();
 		bubbleSort();
 	}
 
-	p5.draw = () => {
-		p5.camera(200, -400, 1000, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
-		p5.smooth();
+	p.draw = () => {
+		p.camera(200, -400, 1000, 0, 0, 0, 0, 1, 0);
+		p.background(240);
+		p.smooth();
 
-		p5.strokeWeight(2);
+		p.strokeWeight(2);
 
 		let resultA = sortedArrayA.concat(unsortedArrayA);
 
-		p5.rotateY(-p5.radians(30));
+		p.rotateY(-p.radians(30));
 
 		for(let i=0; i< count; i++) {
-			p5.ambientMaterial(255);
-			p5.stroke(0,200);
+			p.ambientMaterial(255);
+			p.stroke(0,200);
 			if(cElementA == i) {
-				p5.ambientMaterial(255,0,0);
-				p5.stroke(255,0,0);
+				p.ambientMaterial(255,0,0);
+				p.stroke(255,0,0);
 			}
-			p5.push();
+			p.push();
 
-			p5.line(i * 50 - 700, 0, -200, i * 50 - 700, -resultA[i] * 20, -200);
-			p5.translate(i * 50 - 700, 0, -200);
-			p5.box(20);
-			p5.translate(0,-resultA[i] * 20,0);
-			p5.box(20);
-			p5.pop();
+			p.line(i * 50 - 700, 0, -200, i * 50 - 700, -resultA[i] * 20, -200);
+			p.translate(i * 50 - 700, 0, -200);
+			p.box(20);
+			p.translate(0,-resultA[i] * 20,0);
+			p.box(20);
+			p.pop();
 		}
 
 		let resultB = sortedArrayB.concat(unsortedArrayB);
 
-		p5.rotateX(p5.radians(-90));
+		p.rotateX(p.radians(-90));
 		for(let i=0; i< count; i++) {
-			p5.ambientMaterial(255);
-			p5.stroke(0,200);
+			p.ambientMaterial(255);
+			p.stroke(0,200);
 			if(cElementB == i) {
-				p5.ambientMaterial(255,0,0);
-				p5.stroke(255,0,0);
+				p.ambientMaterial(255,0,0);
+				p.stroke(255,0,0);
 			}
-			p5.push();
+			p.push();
 
-			p5.line(i * 50 - 700, 0, 200, i * 50 - 700, -resultB[i] * 20, 200);
-			p5.translate(i * 50 - 700, 0, 200);
-			p5.box(20);
-			p5.translate(0,-resultB[i] * 20,0);
-			p5.box(20);
-			p5.pop();
+			p.line(i * 50 - 700, 0, 200, i * 50 - 700, -resultB[i] * 20, 200);
+			p.translate(i * 50 - 700, 0, 200);
+			p.box(20);
+			p.translate(0,-resultB[i] * 20,0);
+			p.box(20);
+			p.pop();
 		}
 	}
 
-	p5.keyPressed = () => {
+	p.keyPressed = () => {
 		location.reload();
 	}
 
@@ -154,7 +154,7 @@ const sketch = (p5) => {
                     sortedArrayA.splice(n-1,0,value);
                     reArrange(--n)
                     cElementA = n;
-                    synth1.triggerAttackRelease(tone.Midi((21-n)*3 + 30).toFrequency(), "64n");
+                    synth1.triggerAttackRelease(Tone.Midi((21-n)*3 + 30).toFrequency(), "64n");
                 }, durationTime * 2);
             } else if (unsortedArrayA.length) {
                 setTimeout(function() {insertionSort()}, durationTime * 2);
@@ -181,7 +181,7 @@ const sketch = (p5) => {
                     unsortedArrayB[i] = temp;
 
                     cElementB = temp;
-                	synth2.triggerAttackRelease(tone.Midi((21-temp)*3 + 30).toFrequency(), "64n");
+                	synth2.triggerAttackRelease(Tone.Midi((21-temp)*3 + 30).toFrequency(), "64n");
                     setTimeout(function() {return sortPass(++i)}, durationTime*2);
 
                 } else if (i == unsortedArrayB.length) {

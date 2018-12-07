@@ -1,8 +1,8 @@
 import p5 from 'p5';
 import 'p5/lib/addons/p5.dom';
-import tone from 'tone';
+import Tone from 'tone';
 
-const sketch = (p5) => {
+const sketch = (p) => {
 	let W = 600;
 	let H = 400;
 	let c = 0;
@@ -44,7 +44,7 @@ function generate(oldBirds) {
 function normalizeFitness(birds) {
   // Make score exponentially better?
   for (let i = 0; i < birds.length; i++) {
-    birds[i].score = p5.pow(birds[i].score, 2);
+    birds[i].score = p.pow(birds[i].score, 2);
   }
 
   // Add up all the scores
@@ -66,7 +66,7 @@ function poolSelection(birds) {
   let index = 0;
 
   // Pick a random number between 0 and 1
-  let r = p5.random(1);
+  let r = p.random(1);
 
   // Keep subtracting probabilities until you get less than zero
   // Higher probabilities will be more likely to be fixed since they will
@@ -85,8 +85,8 @@ function poolSelection(birds) {
   return birds[index].copy();
 }
 	function mutate(x) {
-  if (p5.random(1) < 0.1) {
-    let offset = p5.randomGaussian() * 0.5;
+  if (p.random(1) < 0.1) {
+    let offset = p.randomGaussian() * 0.5;
     let newx = x + offset;
     return newx;
   } else {
@@ -100,7 +100,7 @@ class Pipe {
     // How big is the empty space
     let spacing = 100;
     // Where is th center of the empty space
-    let centery = p5.random(spacing, H - spacing);
+    let centery = p.random(spacing, H - spacing);
 
     // Top and bottom of pipe
     this.top = centery - spacing / 2;
@@ -125,21 +125,21 @@ class Pipe {
 
   // Draw the pipe
   show() {
-    p5.noStroke();
-    p5.fill(255,30);
-    p5.strokeWeight(3);
-    p5.stroke(0,200);
-    p5.push();
-    //p5.rect(this.x, 0, this.w, this.top);
-    p5.translate(this.x + this.w/2,this.top/2,0);
-    p5.box(this.w,this.top,100);
-    p5.pop();
+    p.noStroke();
+    p.fill(255,30);
+    p.strokeWeight(3);
+    p.stroke(0,200);
+    p.push();
+    //p.rect(this.x, 0, this.w, this.top);
+    p.translate(this.x + this.w/2,this.top/2,0);
+    p.box(this.w,this.top,100);
+    p.pop();
 
-    p5.push();
-    p5.translate(this.x + this.w/2, H-this.bottom/2,0);
-    //p5.rect(this.x, H - this.bottom, this.w, this.bottom);
-    p5.box(this.w,this.bottom,100);
-    p5.pop();
+    p.push();
+    p.translate(this.x + this.w/2, H-this.bottom/2,0);
+    //p.rect(this.x, H - this.bottom, this.w, this.bottom);
+    p.box(this.w,this.bottom,100);
+    p.pop();
   }
 
   // Update the pipe
@@ -191,13 +191,13 @@ class Bird {
 
   // Display the bird
   show() {
-    p5.fill(255, 100);
-    p5.noStroke();
-    p5.fill(0);
-    p5.push();
-    p5.translate(this.x, this.y,0);
-    p5.sphere(this.r);
-    p5.pop();
+    p.fill(255, 100);
+    p.noStroke();
+    p.fill(0);
+    p.push();
+    p.translate(this.x, this.y,0);
+    p.sphere(this.r);
+    p.pop();
   }
 
   // This is the key function now that decides
@@ -218,15 +218,15 @@ class Bird {
       // Now create the inputs to the neural network
       let inputs = [];
       // x position of closest pipe
-      inputs[0] = p5.map(closest.x, this.x, W, 0, 1);
+      inputs[0] = p.map(closest.x, this.x, W, 0, 1);
       // top of closest pipe opening
-      inputs[1] = p5.map(closest.top, 0, H, 0, 1);
+      inputs[1] = p.map(closest.top, 0, H, 0, 1);
       // bottom of closest pipe opening
-      inputs[2] = p5.map(closest.bottom, 0, H, 0, 1);
+      inputs[2] = p.map(closest.bottom, 0, H, 0, 1);
       // bird's y position
-      inputs[3] = p5.map(this.y, 0, H, 0, 1);
+      inputs[3] = p.map(this.y, 0, H, 0, 1);
       // bird's y velocity
-      inputs[4] = p5.map(this.velocity, -5, 5, 0, 1);
+      inputs[4] = p.map(this.velocity, -5, 5, 0, 1);
 
       // Get the outputs from the network
       let action = this.brain.predict(inputs);
@@ -242,8 +242,8 @@ class Bird {
     this.velocity += this.lift;
     if(this.y > 0) {
       if(runBest) {
-        pingPong.delayTime.value = p5.random(40)/3000;
-        fm.triggerAttackRelease(tone.Midi(p5.floor(p5.map(this.y,0,H,2,10)) *5).toFrequency(), "64n");
+        pingPong.delayTime.value = p.random(40)/3000;
+        fm.triggerAttackRelease(Tone.Midi(p.floor(p.map(this.y,0,H,2,10)) *5).toFrequency(), "64n");
       }
     }
   }
@@ -290,17 +290,17 @@ class Bird {
 	let runBestButton;
 
 
-	p5.setup = () => {
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);
-		p5.smooth();
+	p.setup = () => {
+		let canvas = p.createCanvas(800,800, p.WEBGL);
+		p.smooth();
 		
   		// Access the interface elements
   		
-  		speedSlider = p5.select('#speedSlider');
-  		speedSpan = p5.select('#speed');
-  		highScoreSpan = p5.select('#hs');
-  		allTimeHighScoreSpan = p5.select('#ahs');
-  		runBestButton = p5.select('#best');
+  		speedSlider = p.select('#speedSlider');
+  		speedSpan = p.select('#speed');
+  		highScoreSpan = p.select('#hs');
+  		allTimeHighScoreSpan = p.select('#ahs');
+  		runBestButton = p.select('#best');
   		
   		runBestButton.mousePressed(toggleState);
 
@@ -325,9 +325,9 @@ class Bird {
     		runBestButton.html('run best');
   		}
 	}
-  var pingPong = new tone.PingPongDelay("32n", 0.7).toMaster();
+  var pingPong = new Tone.PingPongDelay("32n", 0.7).toMaster();
 
-	let fm = new tone.FMSynth({
+	let fm = new Tone.FMSynth({
 				"harmonicity"  : 12 ,
 				"modulationIndex"  : 40 ,
 				"detune"  : 0 ,
@@ -354,7 +354,7 @@ class Bird {
 
   
 
-	var bell = new tone.MetalSynth({
+	var bell = new Tone.MetalSynth({
 			"harmonicity" : 16,
 			"resonance" : 60,
 			"modulationIndex" : 80,
@@ -367,22 +367,22 @@ class Bird {
 			"volume" : -30
 		}).toMaster()
 
-	p5.draw = () => {
+	p.draw = () => {
 		
-		p5.frameRate(60);
-		p5.camera(0, 0, 1500, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
+		p.frameRate(60);
+		p.camera(0, 0, 1500, 0, 0, 0, 0, 1, 0);
+		p.background(240);
 
 
 
-		p5.rotateX(p5.radians(20));
-		p5.fill(255,100);
-		p5.rect(-2000,-400,4000,800);
-		p5.fill(255,0,0, c);
-		p5.stroke(0,100);
-		p5.rect(-2000,-400,4000,800);
+		p.rotateX(p.radians(20));
+		p.fill(255,100);
+		p.rect(-2000,-400,4000,800);
+		p.fill(255,0,0, c);
+		p.stroke(0,100);
+		p.rect(-2000,-400,4000,800);
 
-		p5.translate(-W/2,-H/2,0);
+		p.translate(-W/2,-H/2,0);
 
 		c-=10;
 

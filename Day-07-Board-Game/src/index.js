@@ -1,8 +1,8 @@
 import p5 from 'p5/lib/p5.min';
-import tone from 'tone';
+import Tone from 'tone';
 
 
-const sketch = (p5) => {
+const sketch = (p) => {
   	var players = { SELF: 'self', OPPONENT: 'opponent', ROOT: 'root' }
   	, scores = { UNKNOWN: 2, DRAW: 0.25, LOSE: 0, WIN: 1 }   // Duplication with arbiter.js but I don't want to externalize this just yet
                                                              // DRAW is ranked less than UNKNOWN are there may be untested winning moves
@@ -334,8 +334,8 @@ const sketch = (p5) => {
   		    		i = parseInt(move.split('-')[0], 10);
   		    		j = parseInt(move.split('-')[1], 10);
   		    		grid[i][j] = gridSymbols.PLAYER1;
-  		    		fm1.triggerAttackRelease(tone.Midi(i * 5 + 58).toFrequency(), "16n");
-  		    		fm2.triggerAttackRelease(tone.Midi(j * 5 + 58).toFrequency(), "16n");
+  		    		fm1.triggerAttackRelease(Tone.Midi(i * 5 + 58).toFrequency(), "16n");
+  		    		fm2.triggerAttackRelease(Tone.Midi(j * 5 + 58).toFrequency(), "16n");
   			}
   		} else {
   		    
@@ -346,8 +346,8 @@ const sketch = (p5) => {
   		    	i = parseInt(move.split('-')[0], 10);
   		    	j = parseInt(move.split('-')[1], 10);
   		    	grid[i][j] = gridSymbols.PLAYER2;
-  		    	fm3.triggerAttackRelease(tone.Midi(i * 5 + 70).toFrequency(), "64n");
-  		    	fm4.triggerAttackRelease(tone.Midi(j * 5 + 70).toFrequency(), "64n");
+  		    	fm3.triggerAttackRelease(Tone.Midi(i * 5 + 70).toFrequency(), "64n");
+  		    	fm4.triggerAttackRelease(Tone.Midi(j * 5 + 70).toFrequency(), "64n");
   			}
   		}
   		 
@@ -377,11 +377,11 @@ const sketch = (p5) => {
 	let stepCount = 0;
 	let canStartNew = false; 
 
-	var freeverb = new tone.Freeverb().toMaster();
+	var freeverb = new Tone.Freeverb().toMaster();
 		freeverb.dampening.value = 600;
 		freeverb.roomSize.value = 0.9;
 
-	let fm1 = new tone.FMSynth({
+	let fm1 = new Tone.FMSynth({
 				"harmonicity"  : 4 ,
 				"modulationIndex"  : 3 ,
 				"detune"  : 0 ,
@@ -406,7 +406,7 @@ const sketch = (p5) => {
 			}).toMaster();
 	fm1.volume.value = -5;
 
-	let fm2 = new tone.FMSynth({
+	let fm2 = new Tone.FMSynth({
 				"harmonicity"  : 4 ,
 				"modulationIndex"  : 10 ,
 				"detune"  : 0 ,
@@ -431,7 +431,7 @@ const sketch = (p5) => {
 			}).toMaster();
 	fm2.volume.value = -10;
 
-	let fm3 = new tone.FMSynth({
+	let fm3 = new Tone.FMSynth({
 				"harmonicity"  : 4 ,
 				"modulationIndex"  : 3 ,
 				"detune"  : 0 ,
@@ -456,7 +456,7 @@ const sketch = (p5) => {
 			}).toMaster();
 	fm3.volume.value = -30;
 
-	let fm4 = new tone.FMSynth({
+	let fm4 = new Tone.FMSynth({
 				"harmonicity"  : 4 ,
 				"modulationIndex"  : 10 ,
 				"detune"  : 0 ,
@@ -481,7 +481,7 @@ const sketch = (p5) => {
 			}).connect(freeverb).toMaster();
 	fm4.volume.value = -15;
 
-	var bell = new tone.MetalSynth({
+	var bell = new Tone.MetalSynth({
 			"harmonicity" : 16,
 			"resonance" : 60,
 			"modulationIndex" : 80,
@@ -494,11 +494,11 @@ const sketch = (p5) => {
 			"volume" : -30
 		}).toMaster()
 
-	p5.setup = () => {
+	p.setup = () => {
 		bell.triggerAttackRelease('1n' );
 
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);
-		p5.smooth();
+		let canvas = p.createCanvas(800,800, p.WEBGL);
+		p.smooth();
 
 		player1.randomize = true;
 		player2.randomize = true;
@@ -518,54 +518,54 @@ const sketch = (p5) => {
 	let ptick1 = 0;
 	let ptick2 = 0;
 	let a = 0;
-	p5.draw = () => {
-		p5.frameRate(60);
-		p5.camera(p5.frameCount/10 - 100, -100, 600, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
+	p.draw = () => {
+		p.frameRate(60);
+		p.camera(p.frameCount/10 - 100, -100, 600, 0, 0, 0, 0, 1, 0);
+		p.background(240);
 
-		p5.rotateX(p5.radians(60));
-		p5.rotateZ(p5.frameCount / 500);
+		p.rotateX(p.radians(60));
+		p.rotateZ(p.frameCount / 500);
 
 		
-		p5.stroke(0,40);
-		p5.line(0,-150,0,150);
-		p5.line(-150,0,150,0);
-		p5.line(-150,-100,150,-100);
+		p.stroke(0,40);
+		p.line(0,-150,0,150);
+		p.line(-150,0,150,0);
+		p.line(-150,-100,150,-100);
 		
-		p5.line(-150,100,150,100);
-		p5.line(-100,-150,-100,150);
-		p5.line(100,-150,100,150);
-		//p5.line(-100,-150,-100,150);
+		p.line(-150,100,150,100);
+		p.line(-100,-150,-100,150);
+		p.line(100,-150,100,150);
+		//p.line(-100,-150,-100,150);
 		
-		p5.fill(255,30);
-		p5.stroke(0,40);
-		p5.rect(-200,-200,400,400);
-		p5.push();
-		p5.translate(0,0,-1);
-		p5.fill(255,0,0,a);
-		p5.rect(-200,-200,400,400);
-		p5.pop();
+		p.fill(255,30);
+		p.stroke(0,40);
+		p.rect(-200,-200,400,400);
+		p.push();
+		p.translate(0,0,-1);
+		p.fill(255,0,0,a);
+		p.rect(-200,-200,400,400);
+		p.pop();
 
-		p5.noStroke();
+		p.noStroke();
 		for (var i = 0; i < N; i += 1) {
 	    	for (var j = 0; j < N; j += 1) {
 	    		if(grid[i][j]==='X') {
-	    			p5.fill(0);
-	    			p5.push();
-	    			p5.translate(i * 100-100, j * 100 - 100,0);
-	    			p5.sphere(10);
-	    			p5.pop();
+	    			p.fill(0);
+	    			p.push();
+	    			p.translate(i * 100-100, j * 100 - 100,0);
+	    			p.sphere(10);
+	    			p.pop();
 	    		} else if(grid[i][j]==='O') {
-	    			p5.fill(255);
-	      			p5.push();
-	    			p5.translate(i * 100 - 100, j * 100 - 100,0);
-	    			p5.sphere(10);
-	    			p5.pop();
+	    			p.fill(255);
+	      			p.push();
+	    			p.translate(i * 100 - 100, j * 100 - 100,0);
+	    			p.sphere(10);
+	    			p.pop();
 	    		}
 	    	}
 	    }
 
-	    let tick1 = p5.floor(p5.millis()/1000);
+	    let tick1 = p.floor(p.millis()/1000);
 			if(ptick1!=tick1) {
 				if(canStartNew) {
 					grid = createNewGrid();
@@ -582,7 +582,7 @@ const sketch = (p5) => {
 		}
 		ptick1 = tick1;
 
-		let tick2 = p5.floor(p5.millis()/666);
+		let tick2 = p.floor(p.millis()/666);
 			if(ptick2!=tick2) {
 				if(canStartNew) {
 					grid = createNewGrid();
@@ -601,7 +601,7 @@ const sketch = (p5) => {
 		a -=10;
 	}
 
-	p5.keyPressed = () => {
+	p.keyPressed = () => {
 		
 		
 	}

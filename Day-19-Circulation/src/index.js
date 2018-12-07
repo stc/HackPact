@@ -113,7 +113,7 @@ const sketch = (p) => {
     }
 
     p.draw = () => {
-        p.camera(p.frameCount/5 - 400,-200, -600, 0, 0, 0, 0, 1, 0);
+        p.camera(p.mouseX - 400,-200, -600, 0, 0, 0, 0, 1, 0);
         p.background(240);
         p.smooth();
 

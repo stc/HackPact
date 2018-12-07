@@ -1,7 +1,7 @@
 import p5 from 'p5/lib/p5.min';
-import tone from 'tone';
+import Tone from 'tone';
 
-const sketch = (p5) => {
+const sketch = (p) => {
 
 	class Pluck {
 		constructor(x,y,z,w) {
@@ -20,27 +20,27 @@ const sketch = (p5) => {
  			this.easedVal += dy * this.easing;
 			
 			for (let i=0; i<4; i++) {
-				p5.stroke(0,200);
-				p5.strokeWeight(1);
-				p5.noFill();
-				//p5.line(- this.easedVal/2,this.y,this.z+i*10,this.x+this.easedVal/2,this.y,this.z+i*10);
-				p5.beginShape();
-				p5.vertex(- this.easedVal/2,this.y,this.z+i*10);
-				p5.vertex(0,this.y + p5.sin(p5.frameCount) * this.counter,this.z+i*10);
-				p5.vertex(this.x+this.easedVal/2,this.y,this.z+i*10);
-				p5.endShape();
+				p.stroke(0,200);
+				p.strokeWeight(1);
+				p.noFill();
+				//p.line(- this.easedVal/2,this.y,this.z+i*10,this.x+this.easedVal/2,this.y,this.z+i*10);
+				p.beginShape();
+				p.vertex(- this.easedVal/2,this.y,this.z+i*10);
+				p.vertex(0,this.y + p.sin(p.frameCount) * this.counter,this.z+i*10);
+				p.vertex(this.x+this.easedVal/2,this.y,this.z+i*10);
+				p.endShape();
 
-				p5.push();
-				p5.translate(- this.easedVal/2,this.y,this.z+i*10);
-				p5.fill(255,200);
-				p5.box(4,4,10);
-				p5.pop();
+				p.push();
+				p.translate(- this.easedVal/2,this.y,this.z+i*10);
+				p.fill(255,200);
+				p.box(4,4,10);
+				p.pop();
 
-				p5.push();
-				p5.translate(this.easedVal/2,this.y,this.z+i*10);
-				p5.fill(255,200);
-				p5.box(4,4,10);
-				p5.pop();
+				p.push();
+				p.translate(this.easedVal/2,this.y,this.z+i*10);
+				p.fill(255,200);
+				p.box(4,4,10);
+				p.pop();
 			}
 
 			if(this.counter>0) {
@@ -57,14 +57,14 @@ const sketch = (p5) => {
 			this.alpha = 0;
 		}
 		draw() {
-			p5.fill(0);
-			p5.noStroke();
-			p5.push();
-			p5.translate(this.x,this.y,0);
-			p5.sphere(4);
-			p5.fill(255,0,0,this.alpha);
-			p5.sphere(6);
-			p5.pop();
+			p.fill(0);
+			p.noStroke();
+			p.push();
+			p.translate(this.x,this.y,0);
+			p.sphere(4);
+			p.fill(255,0,0,this.alpha);
+			p.sphere(6);
+			p.pop();
 			this.y += this.speed;
 			this.alpha -=20;
 		}
@@ -79,11 +79,11 @@ const sketch = (p5) => {
 
 	let plucks = [];
 
-	let freeverb = new tone.Freeverb().toMaster();
+	let freeverb = new Tone.Freeverb().toMaster();
 	freeverb.dampening.value = 1600;
 	freeverb.roomSize.value = 0.92;
 	
-	let syn = new tone.FMSynth({
+	let syn = new Tone.FMSynth({
 		'harmonicity'  : 80 ,
 		'modulationIndex'  : 180 ,
 		'detune'  : 0 ,
@@ -108,7 +108,7 @@ const sketch = (p5) => {
 		}).connect(freeverb);
 		syn.volume.value = -16;
 
-	let syn2 = new tone.FMSynth({
+	let syn2 = new Tone.FMSynth({
 		'harmonicity'  : 80 ,
 		'modulationIndex'  : 180 ,
 		'detune'  : 0 ,
@@ -134,38 +134,38 @@ const sketch = (p5) => {
 		syn2.volume.value = -4;
 			
 	let b;
-	p5.setup = () => {
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);	
+	p.setup = () => {
+		let canvas = p.createCanvas(800,800, p.WEBGL);	
 
-		plucks.push(new Pluck (0,-200,0,p5.map(songlines[0][0],48,60,600,50)));
-		plucks.push(new Pluck (0,-90,0,p5.map(songlines[0][1],48,60,600,50)));
-		plucks.push(new Pluck (0,-30,0,p5.map(songlines[0][2],48,60,600,50)));
-		plucks.push(new Pluck (0,30,0,p5.map(songlines[0][3],48,60,600,50)));
-		plucks.push(new Pluck (0,180,0,p5.map(songlines[0][4],48,60,600,50)));
-		plucks.push(new Pluck (0,340,0,p5.map(songlines[0][5],48,60,600,50)));
+		plucks.push(new Pluck (0,-200,0,p.map(songlines[0][0],48,60,600,50)));
+		plucks.push(new Pluck (0,-90,0,p.map(songlines[0][1],48,60,600,50)));
+		plucks.push(new Pluck (0,-30,0,p.map(songlines[0][2],48,60,600,50)));
+		plucks.push(new Pluck (0,30,0,p.map(songlines[0][3],48,60,600,50)));
+		plucks.push(new Pluck (0,180,0,p.map(songlines[0][4],48,60,600,50)));
+		plucks.push(new Pluck (0,340,0,p.map(songlines[0][5],48,60,600,50)));
 		
 		b = new Ball();
 	}
 
-	p5.draw = () => {
-		p5.camera(200, -100, 900, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
-		p5.smooth();
+	p.draw = () => {
+		p.camera(200, -100, 900, 0, 0, 0, 0, 1, 0);
+		p.background(240);
+		p.smooth();
 
-		p5.push();
-		p5.rotateY(-p5.frameCount/3000);
-		p5.noFill();
-		p5.stroke(0,100);
-		p5.strokeWeight(2);
-		p5.box(3000,2000,4000);
+		p.push();
+		p.rotateY(-p.frameCount/3000);
+		p.noFill();
+		p.stroke(0,100);
+		p.strokeWeight(2);
+		p.box(3000,2000,4000);
 		
 		for(let i=0; i<plucks.length; i++) {
 			plucks[i].draw();
 			
 		}
 
-		p5.stroke(0,40);
-		p5.line(0,-4000,0,0,4000,0);
+		p.stroke(0,40);
+		p.line(0,-4000,0,0,4000,0);
 		b.draw();
 		if(b.y > plucks[0].y && plucks[0].canPlay) playNext();
 		if(b.y > plucks[1].y && plucks[1].canPlay) playNext();
@@ -180,19 +180,19 @@ const sketch = (p5) => {
 				plucks[i].canPlay = true;
 			}
 		}
-		p5.pop();
+		p.pop();
 	}
 
 	let counter = 0;	
 	function playNext() {
 		if(counter == 0) {
-			syn2.triggerAttackRelease(tone.Midi(songlines[lineIndex][counter] +7+12).toFrequency(),"4n");
+			syn2.triggerAttackRelease(Tone.Midi(songlines[lineIndex][counter] +7+12).toFrequency(),"4n");
 			for(let i=0; i<plucks.length; i++) {
-				plucks[i].w = p5.map(songlines[lineIndex][i],48,60,600,50);
+				plucks[i].w = p.map(songlines[lineIndex][i],48,60,600,50);
 			}
 		}
 		if(plucks[counter].canPlay) {
-			syn.triggerAttackRelease(tone.Midi(songlines[lineIndex][counter]+12).toFrequency(),"16n");
+			syn.triggerAttackRelease(Tone.Midi(songlines[lineIndex][counter]+12).toFrequency(),"16n");
 			plucks[counter].canPlay = false;
 			plucks[counter].counter = 10;
 			b.alpha = 255;

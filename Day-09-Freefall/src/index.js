@@ -1,10 +1,10 @@
 import p5 from 'p5';
 import 'p5/lib/addons/p5.dom';
-import tone from 'tone';
+import Tone from 'tone';
 
 
 
-const sketch = (p5) => {
+const sketch = (p) => {
   class Boundary {
     constructor(i_, x_,y_, w_, h_) {
     
@@ -31,17 +31,17 @@ const sketch = (p5) => {
     this.body = world.CreateBody(bd).CreateFixture(fd);
   
     this.display = function() {
-      p5.fill(255,100);
-      p5.stroke(0,100);
-      p5.push();
-      p5.translate(this.x,this.y,0);
-      p5.box(this.w,this.h,100);
+      p.fill(255,100);
+      p.stroke(0,100);
+      p.push();
+      p.translate(this.x,this.y,0);
+      p.box(this.w,this.h,100);
 
-      p5.noStroke();
-      p5.fill(255,0,0,this.fillColor);
-      p5.box(this.w,this.h,100);
+      p.noStroke();
+      p.fill(255,0,0,this.fillColor);
+      p.box(this.w,this.h,100);
 
-      p5.pop();
+      p.pop();
 
       this.fillColor -=20;
     }
@@ -74,8 +74,8 @@ const sketch = (p5) => {
     this.body.CreateFixture(fd2);
   
     // Some additional stuff
-    this.body.SetLinearVelocity(new box2d.b2Vec2(p5.random(-1, 1), p5.random(2, 10)));
-    this.body.SetAngularVelocity(p5.random(-25,25));
+    this.body.SetLinearVelocity(new box2d.b2Vec2(p.random(-1, 1), p.random(2, 10)));
+    this.body.SetAngularVelocity(p.random(-25,25));
   
     // This function removes the particle from the box2d world
     this.killBody = function() {
@@ -87,7 +87,7 @@ const sketch = (p5) => {
       // Let's find the screen position of the particle
       var pos = scaleToPixels(this.body.GetPosition());
       // Is it off the bottom of the screen?
-      if (pos.y > p5.height+this.w*this.h) {
+      if (pos.y > p.height+this.w*this.h) {
         this.killBody();
         return true;
       }
@@ -102,19 +102,19 @@ const sketch = (p5) => {
       var a = this.body.GetAngleRadians();
       
       // Draw it!
-      p5.rectMode(p5.CENTER);
-      p5.push();
-      p5.translate(pos.x, pos.y);
-      //p5.rotate(a);
-      p5.noStroke();
-      //p5.rect(0,0,this.w,this.h);
-      p5.fill(0);
-      p5.sphere(this.r);
-      p5.pop();
+      p.rectMode(p.CENTER);
+      p.push();
+      p.translate(pos.x, pos.y);
+      //p.rotate(a);
+      p.noStroke();
+      //p.rect(0,0,this.w,this.h);
+      p.fill(0);
+      p.sphere(this.r);
+      p.pop();
     }
   }
 
-  let fm = new tone.MembraneSynth({
+  let fm = new Tone.MembraneSynth({
         "envelope"  : {
           "attack"  : 0.001 ,
           "decay"  : 0.002 ,
@@ -125,19 +125,20 @@ const sketch = (p5) => {
 
   fm.volume.value = -16;
 
-  p5.setup = () => {
-    let canvas = p5.createCanvas(800,800, p5.WEBGL);
-    p5.smooth();
+  p.setup = () => {
+
+    let canvas = p.createCanvas(800,800, p.WEBGL);
+    p.smooth();
 
     world = createWorld();
 
     // Add a bunch of fixed boundaries
-    boundaries.push(new Boundary( 0, p5.width / 2, p5.height / 3, 5, p5.width / 8, 0));
-    boundaries.push(new Boundary( 1, p5.width / 2 - p5.width/8, p5.height / 3 + p5.height/6, 140, 10, 0));
-    boundaries.push(new Boundary( 2, p5.width / 2 + p5.width/8, p5.height / 3 + p5.height/6, 140, 10, 0));
+    boundaries.push(new Boundary( 0, p.width / 2, p.height / 3, 5, p.width / 8, 0));
+    boundaries.push(new Boundary( 1, p.width / 2 - p.width/8, p.height / 3 + p.height/6, 140, 10, 0));
+    boundaries.push(new Boundary( 2, p.width / 2 + p.width/8, p.height / 3 + p.height/6, 140, 10, 0));
 
-    boundaries.push(new Boundary( 3, p5.width / 2 - p5.width/4, p5.height / 2 + p5.height/6, 140, 10, 0));
-    boundaries.push(new Boundary( 4, p5.width / 2 + p5.width/4, p5.height / 2 + p5.height/6, 140, 10, 0));
+    boundaries.push(new Boundary( 3, p.width / 2 - p.width/4, p.height / 2 + p.height/6, 140, 10, 0));
+    boundaries.push(new Boundary( 4, p.width / 2 + p.width/4, p.height / 2 + p.height/6, 140, 10, 0));
     
     let listener = new box2d.b2ContactListener;
     listener.BeginContact = function(contact) {
@@ -145,7 +146,7 @@ const sketch = (p5) => {
         for(let i=0;i<boundaries.length;i++) {
           if(boundaries[i].density === contact.m_fixtureA.m_density) {
             boundaries[i].fillColor = 255;
-            fm.triggerAttackRelease(tone.Midi(contact.m_fixtureA.m_density * 4 + 80).toFrequency(), "32n");
+            fm.triggerAttackRelease(Tone.Midi(contact.m_fixtureA.m_density * 4 + 80).toFrequency(), "32n");
           }
         }
     }
@@ -159,16 +160,17 @@ const sketch = (p5) => {
   }
 
   let ptick1 = 0;
-	p5.draw = () => {
-		p5.frameRate(60);
-		p5.camera(p5.frameCount/5, -200, 500, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
+  p.draw = () => {
 
-    p5.noFill();
-    p5.stroke(0,100);
-    p5.box(1000);
+		p.frameRate(60);
+		p.camera(p.mouseX - p.width/2, -200, 500, 0, 0, 0, 0, 1, 0);
+		p.background(240);
 
-    p5.translate(-p5.width/2, -p5.height/2, 0);
+    p.noFill();
+    p.stroke(0,100);
+    p.box(1000);
+
+    p.translate(-p.width/2, -p.height/2, 0);
 
     // We must always step through time!
     let timeStep = 1.0/30;
@@ -188,10 +190,10 @@ const sketch = (p5) => {
       }
     }
 
-    let tick1 = p5.floor(p5.millis()/1000);
+    let tick1 = p.floor(p.millis()/1000);
     if(ptick1!=tick1) {
-          var p = new Element(p5.width/2,-200);
-          pops.push(p);
+          var po = new Element(p.width/2,-200);
+          pops.push(po);
         }
     
     ptick1 = tick1;

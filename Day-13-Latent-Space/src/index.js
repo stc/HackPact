@@ -1,6 +1,6 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
-const sketch = (p5) => {
+const sketch = (p) => {
     var numInterpolations = 16;
     let alpha = 0;
     let dAlpha = 0;
@@ -96,45 +96,45 @@ const sketch = (p5) => {
     var sequenceIndex = -1;
     var stepIndex = -1;
     ///////////////////////////////
-    //p5.js setup
+    //p.js setup
     var TILE_SIZE = 50;
     var WIDTH = TILE_SIZE * numInterpolations;
     var HEIGHT = 800;
     var START_COLOR;
     var END_COLOR;
-    p5.setup = () => {
-        let canvas = p5.createCanvas(WIDTH, HEIGHT, p5.WEBGL);
-        START_COLOR = p5.color(60, 180, 203);
-        END_COLOR = p5.color(233, 72, 88);
-        p5.noStroke();
+    p.setup = () => {
+        let canvas = p.createCanvas(WIDTH, HEIGHT, p.WEBGL);
+        START_COLOR = p.color(60, 180, 203);
+        END_COLOR = p.color(233, 72, 88);
+        p.noStroke();
         generateMelodies();
     }
     let count = 0;
     let percent = 0;
     
 
-    p5.draw = () => {
-        p5.camera(-100, -400, 400, 0, 0, 0, 0, 1, 0);
-        p5.background(240);
-        p5.smooth();
-        p5.translate(-400, -300, 0);
+    p.draw = () => {
+        p.camera(-100, -400, 400, 0, 0, 0, 0, 1, 0);
+        p.background(240);
+        p.smooth();
+        p.translate(-400, -300, 0);
 
-        p5.push();
-        p5.translate(0,400,0);
-        p5.fill(0,dAlpha);
+        p.push();
+        p.translate(0,400,0);
+        p.fill(0,dAlpha);
         if(dAlpha>0) dAlpha -=20;
-        p5.box(4000,5,5);
-        p5.translate(0,-50,0);
-        p5.fill(255,sAlpha);
+        p.box(4000,5,5);
+        p.translate(0,-50,0);
+        p.fill(255,sAlpha);
         if(sAlpha>0) sAlpha -=20;
-        p5.box(4000,5,5);
-        p5.pop();
+        p.box(4000,5,5);
+        p.pop();
 
-        if (p5.mouseX > 0 && p5.mouseX < p5.width) {
-            offset = p5.ceil(p5.map(p5.mouseX, 0, p5.width, 0, numInterpolations - 1));
+        if (p.mouseX > 0 && p.mouseX < p.width) {
+            offset = p.ceil(p.map(p.mouseX, 0, p.width, 0, numInterpolations - 1));
         }
         var totalPlayTime = (Tone.Transport.bpm.value * NUM_STEPS * numInterpolations) / 1000;
-        percent = (p5.millis() % 6000 / 6000 / numInterpolations) + (TILE_SIZE / WIDTH * offset);
+        percent = (p.millis() % 6000 / 6000 / numInterpolations) + (TILE_SIZE / WIDTH * offset);
         var currSequenceIndex = Math.floor(percent * numInterpolations);
         var currStepIndex = Math.floor((percent * numInterpolations - currSequenceIndex) * NUM_STEPS);
 
@@ -180,27 +180,27 @@ const sketch = (p5) => {
         for (var i = 0; i < numInterpolations; i++) {
             var x = i * TILE_SIZE;
             var y = 50;
-            var currColor = p5.lerpColor(START_COLOR, END_COLOR, i / numInterpolations);
+            var currColor = p.lerpColor(START_COLOR, END_COLOR, i / numInterpolations);
             //use currColor but at 50% opacity
-            p5.fill(255,20);
-            p5.stroke(p5.red(currColor), p5.red(currColor), p5.red(currColor), 125);
+            p.fill(255,20);
+            p.stroke(p.red(currColor), p.red(currColor), p.red(currColor), 125);
             if (i == offset) {
-                p5.fill(255, 0, 0, 125);
+                p.fill(255, 0, 0, 125);
             }
-            p5.rect(x, y, TILE_SIZE, TILE_SIZE);
+            p.rect(x, y, TILE_SIZE, TILE_SIZE);
             
         }
         for (var i = 0; i < numInterpolations; i++) {
             var x = i * TILE_SIZE;
             var y = 210;
-            var currColor = p5.lerpColor(START_COLOR, END_COLOR, i / numInterpolations);
+            var currColor = p.lerpColor(START_COLOR, END_COLOR, i / numInterpolations);
             //use currColor but at 50% opacity
-            p5.fill(255,20);
-            p5.stroke(p5.red(currColor), p5.red(currColor), p5.red(currColor), 125);
+            p.fill(255,20);
+            p.stroke(p.red(currColor), p.red(currColor), p.red(currColor), 125);
             if (i == offset) {
-                p5.fill(255, 0, 0, 125);
+                p.fill(255, 0, 0, 125);
             }
-            p5.rect(x, y, TILE_SIZE, TILE_SIZE);
+            p.rect(x, y, TILE_SIZE, TILE_SIZE);
             
         }
 
@@ -208,8 +208,8 @@ const sketch = (p5) => {
             var x = i * TILE_SIZE;
             var y = 50;
             
-            p5.fill(255, 200);
-            p5.stroke(0, 180);
+            p.fill(255, 200);
+            p.stroke(0, 180);
             if (interpolatedNoteSequences1) {
                 drawNotes(interpolatedNoteSequences1[i].notes, x, y - 750, TILE_SIZE, TILE_SIZE);
             }
@@ -218,23 +218,23 @@ const sketch = (p5) => {
             var x = i * TILE_SIZE;
             var y = 210;
             
-            p5.fill(255, 200);
-            p5.stroke(0, 180);
+            p.fill(255, 200);
+            p.stroke(0, 180);
             if (interpolatedNoteSequences2) {
                 drawNotes(interpolatedNoteSequences2[i].notes, x, y - 750, TILE_SIZE, TILE_SIZE);
             }
         }
-        p5.fill(255, 0, 0, alpha);
-        p5.noStroke();
-        p5.push();
-        p5.translate(percent * WIDTH, 0,10);
-        p5.box(2, 4000, 4);
-        p5.pop();
+        p.fill(255, 0, 0, alpha);
+        p.noStroke();
+        p.push();
+        p.translate(percent * WIDTH, 0,10);
+        p.box(2, 4000, 4);
+        p.pop();
         //text(sequenceIndex + " - " + currStepIndex, 15, 15);
 
         if(alpha>20) alpha -=20;
     }
-    p5.mousePressed = () => {
+    p.mousePressed = () => {
         offset += 2;
         if (offset > numInterpolations - 1) {
             offset = 0;
@@ -253,18 +253,18 @@ const sketch = (p5) => {
     }
 
     function drawNotes(notes, x, y, width, height) {
-        p5.push();
-        p5.translate(x, y);
+        p.push();
+        p.translate(x, y);
         var cellWidth = width / NUM_STEPS;
         var cellHeight = height / NUM_NOTES;
         for(let i= notes.length-1; i > 0; i--) {
             var emptyNoteSpacer = 1;
-            p5.push();
-            p5.translate(emptyNoteSpacer + cellWidth * notes[i].quantizedStartStep, p5.height - cellHeight * (notes[i].pitch - MIDI_START_NOTE), 25);
-            p5.box(cellWidth * (notes[i].quantizedEndStep - notes[i].quantizedStartStep) - emptyNoteSpacer, -cellHeight * 2, 50);
-            p5.pop();
+            p.push();
+            p.translate(emptyNoteSpacer + cellWidth * notes[i].quantizedStartStep, p.height - cellHeight * (notes[i].pitch - MIDI_START_NOTE), 25);
+            p.box(cellWidth * (notes[i].quantizedEndStep - notes[i].quantizedStartStep) - emptyNoteSpacer, -cellHeight * 2, 50);
+            p.pop();
         }
-        p5.pop();
+        p.pop();
     }
 
     function generateMelodies() {

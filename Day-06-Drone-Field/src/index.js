@@ -1,7 +1,7 @@
 import p5 from 'p5/lib/p5.min';
-import tone from 'tone';
+import Tone from 'tone';
 
-const sketch = (p5) => {
+const sketch = (p) => {
 	class Drone {
 		constructor() {
 			this.h = 0;
@@ -11,32 +11,32 @@ const sketch = (p5) => {
 			let _height = 200;
 			let w = _width/600.0;
 			 
-  			p5.push();
+  			p.push();
 	
-  			p5.translate(-500,-200,0);
+  			p.translate(-500,-200,0);
 	
   			for (let i=0; i<600; i+=8) {
-  				let l = 50*p5.sin(p5.radians(i-this.h));
-    			let r =  4*p5.sin(p5.radians(i+this.h));
-    			let p =  4*p5.sin(p5.PI/4+p5.radians(i-this.h));
-    			p5.stroke(0, 60); 
-    			p5.line(i*w, 0, i*w, _height/2+l);
-    			p5.noStroke();
-    			p5.fill(60);
-    			p5.push();
-    			p5.translate(i*w, _height/2+l,0);
-    			p5.box(r/2);
-    			p5.pop();
-    			p5.stroke(0,60);
-    			p5.line(i*w+5, _height, i*w+5, _height/2-l); 
-    			p5.noStroke();
-    			p5.fill(60);
-    			p5.push();
-    			p5.translate(i*w+5, _height/2-l,0);
-    			p5.box(p/2);
-    			p5.pop();
+  				let l = 50*p.sin(p.radians(i-this.h));
+    			let r =  4*p.sin(p.radians(i+this.h));
+    			let po =  4*p.sin(p.PI/4+p.radians(i-this.h));
+    			p.stroke(0, 60); 
+    			p.line(i*w, 0, i*w, _height/2+l);
+    			p.noStroke();
+    			p.fill(60);
+    			p.push();
+    			p.translate(i*w, _height/2+l,0);
+    			p.box(r/2);
+    			p.pop();
+    			p.stroke(0,60);
+    			p.line(i*w+5, _height, i*w+5, _height/2-l); 
+    			p.noStroke();
+    			p.fill(60);
+    			p.push();
+    			p.translate(i*w+5, _height/2-l,0);
+    			p.box(po/2);
+    			p.pop();
   			}
-  			p5.pop();
+  			p.pop();
   		this.h+=0.1;
 		}
 	}
@@ -44,16 +44,16 @@ const sketch = (p5) => {
 	let field;	
 	let NODES = 16;
 
-	tone.Master.volume.value = -25;
+	Tone.Master.volume.value = -25;
 	let oscillators = {};
 	let fundamental = 32;
-	let reverb = new tone.JCReverb().toMaster();
+	let reverb = new Tone.JCReverb().toMaster();
 
 	function makeOscillators(type) {
   		for (var i = 1; i <= NODES; i++) {
-    		var panner = new tone.Panner(Math.random() * 1 - .5).toMaster();
-    		var reverb = new tone.JCReverb(0.7).connect(panner)
-    		oscillators['node' + i] = new tone.FMOscillator({
+    		var panner = new Tone.Panner(Math.random() * 1 - .5).toMaster();
+    		var reverb = new Tone.JCReverb(0.7).connect(panner)
+    		oscillators['node' + i] = new Tone.FMOscillator({
       		frequency: fundamental * i,
       		type: type,
       		modulationType: "sine",
@@ -64,31 +64,31 @@ const sketch = (p5) => {
   		}
 	}
 	
-	p5.setup = () => {
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);
-		p5.smooth();
+	p.setup = () => {
+		let canvas = p.createCanvas(800,800, p.WEBGL);
+		p.smooth();
 		field = new Drone();
 		makeOscillators('sine');
 	}
 
-	p5.draw = () => {
-		p5.frameRate(60);
-		p5.camera(p5.frameCount/10 - 100, -100, 600, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
-		p5.fill(255,100);
-		p5.noStroke();
-		p5.rect(-2000,-2000,4000,1960);
-		p5.rect(-2000,-1000,4000,800);
-		p5.push();
-		p5.rotateX(p5.radians(90));
+	p.draw = () => {
+		p.frameRate(60);
+		p.camera(100, -100, 600, 0, 0, 0, 0, 1, 0);
+		p.background(240);
+		p.fill(255,100);
+		p.noStroke();
+		p.rect(-2000,-2000,4000,1960);
+		p.rect(-2000,-1000,4000,800);
+		p.push();
+		p.rotateX(p.radians(90));
 		field.draw();
-		p5.pop();
-		p5.push();
-		p5.rotateX(-p5.radians(90));
+		p.pop();
+		p.push();
+		p.rotateX(-p.radians(90));
 		field.draw();
-		p5.translate(0,-200,0);
+		p.translate(0,-200,0);
 		field.draw();
-		p5.pop();
+		p.pop();
 	}
 }
 

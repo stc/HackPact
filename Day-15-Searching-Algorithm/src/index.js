@@ -1,7 +1,7 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
 
-const sketch = (p5) => {
+const sketch = (p) => {
     let gridSize = 9;
     let grid = [];
     for(let i=0; i< gridSize; i++) {
@@ -50,13 +50,13 @@ const sketch = (p5) => {
     var osc2 = new Tone.Oscillator(0, "sine").connect(phaser).start();
     osc2.volume.value = -16;
 
-    p5.setup = () => {
-        let canvas = p5.createCanvas(800, 800, p5.WEBGL);
+    p.setup = () => {
+        let canvas = p.createCanvas(800, 800, p.WEBGL);
         
         for(let i = 0; i < 4; i++) {
         for(let j = 0; j < 4; j++) {
-            let p1 = p5.floor(p5.random(1,8));
-            let p2 = p5.floor(p5.random(1,8));
+            let p1 = p.floor(p.random(1,8));
+            let p2 = p.floor(p.random(1,8));
             console.log (p1 + " " + p2);
             if(p1==7 && p2==7) {
                 } else {
@@ -70,93 +70,93 @@ const sketch = (p5) => {
 
     let pc = 24;
     let notes = [54+pc,50+pc,46+pc,45+pc,43+pc,40+pc,38+pc,34+pc,30+pc,26+pc,25+pc,23+pc,10+pc,18+pc,14+pc];
-    p5.draw = () => {
-        p5.camera(p5.cos(p5.frameCount/80) * 50, -50 + p5.sin(p5.frameCount/120) * 50, 400, 0, 0, 0, 0, 1, 0);
-        p5.background(240);
-        p5.smooth(); 
+    p.draw = () => {
+        p.camera(p.cos(p.frameCount/80) * 50, -50 + p.sin(p.frameCount/120) * 50, 400, 0, 0, 0, 0, 1, 0);
+        p.background(240);
+        p.smooth(); 
 
         let offset = 30;
 
-        p5.rotateZ(p5.radians(45));
-        p5.rotateX(p5.radians(30));
-        p5.rotateY(-p5.radians(30));
-        p5.translate(0,-offset * gridSize/8, 0);
+        p.rotateZ(p.radians(45));
+        p.rotateX(p.radians(30));
+        p.rotateY(-p.radians(30));
+        p.translate(0,-offset * gridSize/8, 0);
 
-        p5.noFill();
+        p.noFill();
 
         
-        p5.translate(0,offset * gridSize/8, 0);
-        p5.translate(-offset * (gridSize-1)/2, -offset * gridSize / 2,0);
+        p.translate(0,offset * gridSize/8, 0);
+        p.translate(-offset * (gridSize-1)/2, -offset * gridSize / 2,0);
 
-        //p5.noFill();
-        //p5.stroke(0,15);
-        //p5.ellipse(0 + offset * (gridSize-1)/2, 0 + offset * (gridSize-1)/2,450,450);
+        //p.noFill();
+        //p.stroke(0,15);
+        //p.ellipse(0 + offset * (gridSize-1)/2, 0 + offset * (gridSize-1)/2,450,450);
 
 
         for(let i=0; i< gridSize; i++) {
             for(let j=0; j< gridSize; j++) {
-                //p5.stroke(0,180);
-                //p5.strokeWeight(2);
-                //p5.fill(240);
+                //p.stroke(0,180);
+                //p.strokeWeight(2);
+                //p.fill(240);
 
-                p5.noFill();
-                    p5.stroke(210, p5.abs(gridSize - (i-gridSize/2))*20);
-                    p5.push();
-                    p5.translate(i * offset, j * offset, 0);
-                    //p5.rotateZ(p5.radians(45));
-                    p5.line(0,0,-10,0,offset,-10);
-                    p5.line(0,0,-10,offset,0,-10);
+                p.noFill();
+                    p.stroke(210, p.abs(gridSize - (i-gridSize/2))*20);
+                    p.push();
+                    p.translate(i * offset, j * offset, 0);
+                    //p.rotateZ(p.radians(45));
+                    p.line(0,0,-10,0,offset,-10);
+                    p.line(0,0,-10,offset,0,-10);
 
-                    p5.pop();
+                    p.pop();
 
                 if(i== 0 && j == 0) {
-                    p5.noStroke();
-                    p5.fill(0,180);
-                    p5.push();
-                    p5.translate(i * offset, j * offset, -10);
-                    //p5.rotateZ(p5.radians(45));
-                    p5.sphere(8);
-                    p5.pop();
+                    p.noStroke();
+                    p.fill(0,180);
+                    p.push();
+                    p.translate(i * offset, j * offset, -10);
+                    //p.rotateZ(p.radians(45));
+                    p.sphere(8);
+                    p.pop();
                 }
 
                 if(grid[j][i] == "Obstacle") {
-                    p5.fill(0,180);
-                    p5.push();
-                    p5.stroke(0);
-                    p5.translate(i * offset, j * offset, -0);
-                    p5.rotateX(p5.radians(90));
-                    //p5.rotateZ(p5.radians(45));
-                    p5.cone(10,35,50);
-                    p5.pop();
+                    p.fill(0,180);
+                    p.push();
+                    p.stroke(0);
+                    p.translate(i * offset, j * offset, -0);
+                    p.rotateX(p.radians(90));
+                    //p.rotateZ(p.radians(45));
+                    p.cone(10,35,50);
+                    p.pop();
                     
                 }
 
                 if(grid[j][i] == "Goal") {
-                    p5.fill(255,0,0,200);
-                    p5.push();
-                    p5.noStroke();
-                    p5.translate(i * offset, j * offset, -10);
-                    //p5.rotateZ(p5.radians(45));
-                    p5.sphere(8);
-                    p5.pop();
+                    p.fill(255,0,0,200);
+                    p.push();
+                    p.noStroke();
+                    p.translate(i * offset, j * offset, -10);
+                    //p.rotateZ(p.radians(45));
+                    p.sphere(8);
+                    p.pop();
                 }
 
                 if(grid[j][i] == "Visited") {
                     if(visitedAlpha>0) {
-                        p5.fill(255,visitedAlpha);
+                        p.fill(255,visitedAlpha);
                     } else {
-                        p5.fill(255,0);
+                        p.fill(255,0);
                     }
-                    p5.noStroke();
-                    p5.push();
-                    p5.translate(i * offset, j * offset, -10);
-                    //p5.rotateZ(p5.radians(45));
-                    p5.sphere(4);
-                    p5.pop();
+                    p.noStroke();
+                    p.push();
+                    p.translate(i * offset, j * offset, -10);
+                    //p.rotateZ(p.radians(45));
+                    p.sphere(4);
+                    p.pop();
                 }
 
                 if(grid[j][i] == "oPath") {
-                    p5.fill(255,0,200,200);
+                    p.fill(255,0,200,200);
                     
                 }
             }
@@ -168,17 +168,17 @@ const sketch = (p5) => {
 
        
 
-        for(let i=0; i< p5.ceil(index); i++) {
-            p5.strokeWeight(2);
-            p5.stroke(0,100);
+        for(let i=0; i< p.ceil(index); i++) {
+            p.strokeWeight(2);
+            p.stroke(0,100);
             if(i<nodes.length-1) {
-                p5.line(nodes[i].x,nodes[i].y,nodes[i].z,nodes[i+1].x,nodes[i+1].y,nodes[i+1].z);
-                p5.noStroke();
-                p5.push();
-                p5.fill(0, solutionAlpha[i]);
-                p5.translate(nodes[i+1].x,nodes[i+1].y,nodes[i+1].z);
-                p5.sphere(3);
-                p5.pop();
+                p.line(nodes[i].x,nodes[i].y,nodes[i].z,nodes[i+1].x,nodes[i+1].y,nodes[i+1].z);
+                p.noStroke();
+                p.push();
+                p.fill(0, solutionAlpha[i]);
+                p.translate(nodes[i+1].x,nodes[i+1].y,nodes[i+1].z);
+                p.sphere(3);
+                p.pop();
                 
                 if(solutionAlpha[i] < 190) {
                     if(solutionAlpha[i]==0) {
@@ -192,7 +192,7 @@ const sketch = (p5) => {
                     solutionAlpha[i] += 1;
                 }
             }
-            p5.strokeWeight(1);
+            p.strokeWeight(1);
         }
         
 
@@ -200,14 +200,14 @@ const sketch = (p5) => {
                 index += 0.1;
                 if(index > solution.length) index = solution.length;
                 if(index == solution.length) {
-                    p5.strokeWeight(2);
-                    p5.stroke(0,100);
-                    p5.line(nodes[nodes.length-1].x,nodes[nodes.length-1].y,nodes[nodes.length-1].z,(gridSize-1) * offset, (gridSize-1) * offset, -10);
-                    p5.strokeWeight(1);
+                    p.strokeWeight(2);
+                    p.stroke(0,100);
+                    p.line(nodes[nodes.length-1].x,nodes[nodes.length-1].y,nodes[nodes.length-1].z,(gridSize-1) * offset, (gridSize-1) * offset, -10);
+                    p.strokeWeight(1);
                 }
                 if(canAdd) {
                     for(let i=0; i<solution.length; i++) {
-                        nodes.push( p5.createVector(solution[i].distanceFromLeft * offset, solution[i].distanceFromTop * offset, -10 ));
+                        nodes.push( p.createVector(solution[i].distanceFromLeft * offset, solution[i].distanceFromTop * offset, -10 ));
                         solutionAlpha.push(0);
                         canPlay.push(true);
                     }
@@ -217,12 +217,12 @@ const sketch = (p5) => {
         
     }
 
-     p5.keyPressed = () => {
-            if(p5.key == 's') {
+     p.keyPressed = () => {
+            if(p.key == 's') {
                 canRun = true;
                 findShortestPath([0,0], grid);
             }
-            else if (p5.key == 'r') {
+            else if (p.key == 'r') {
                 location.reload();
             }
         }
@@ -306,12 +306,12 @@ const sketch = (p5) => {
           return 'Valid';
         }
     }
-    let p = [];
+    //let p = [];
 
     function exploreInDirection(currentLocation, direction, grid) {
         let newPath = currentLocation.path.slice();
         newPath.push(currentLocation);
-        fm.envelope.release = p5.random(2)+1.2;
+        fm.envelope.release = p.random(2)+1.2;
         fm.triggerAttackRelease(Tone.Midi(currentLocation.distanceFromLeft * 5 + 80).toFrequency(), "32n");
         let dft = currentLocation.distanceFromTop;
         let dfl = currentLocation.distanceFromLeft;
