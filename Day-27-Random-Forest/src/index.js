@@ -63,12 +63,12 @@ const sketch = (p) => {
 
         p.draw = () => {
             //p.camera(p.mouseX, 0, 400, 0, 0, 0, 0, 1, 0);
-            p.background(240);
+            p.background(0);
             
-            p.stroke(0,40);
+            p.stroke(255,40);
             p.line(0,-3000,0,3000);
             p.noStroke();
-            p.fill(0);
+            p.fill(255);
         	p.rect(obj1Param[0],obj1Param[1],obj1Param[2],obj1Param[3]);
         	p.rect(obj1Param[0] + 30,obj1Param[1],obj1Param[2],obj1Param[3]);
         	p.rect(obj2Param[0],obj2Param[1],obj2Param[2],obj2Param[3]);
@@ -142,7 +142,7 @@ const sketch = (p) => {
                             np.spawned = pu.spawned;
                         }
                     }
-                    p.stroke(0, 5 + pu.life * 50);
+                    p.stroke(255, 5 + pu.life * 50);
                     p.strokeWeight(1);
                     if (pu.par != null) {
                         p.line(pu.position.x, pu.position.y, pu.position.z, pu.par.position.x, pu.par.position.y, pu.position.z);
@@ -253,7 +253,7 @@ const sketch = (p) => {
                 p.rotateZ(p.radians(this.r));
                 this.r += this.size / 4;
                 p.noStroke();
-                p.fill(0, 5 + this.life * 255);
+                p.fill(255, 5 + this.life * 255);
                 p.box(this.size);
                 p.fill(255,0,0,this.alpha);
                 p.box(this.size * 1.5);

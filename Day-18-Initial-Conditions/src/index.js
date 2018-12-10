@@ -54,7 +54,7 @@ const sketch = (p) => {
             let a2_a = (num1 * (num2 + num3 + num4)) / den;
             
             p.translate(this.cx, this.cy);
-            p.stroke(0,100);
+            p.stroke(255,100);
             p.strokeWeight(2);
             
             let x1 = this.r1 * p.sin(this.a1);
@@ -72,7 +72,7 @@ const sketch = (p) => {
               this.buffer.line(this.px2+400, -this.py2+400, x2+400, -y2+400);
             }
             
-            p.fill(0);
+            p.fill(255);
             p.push();
             p.translate(x1,y1,this.cz);
             p.sphere(this.m1/2);
@@ -88,7 +88,7 @@ const sketch = (p) => {
             p.ellipse(0,0,30,30);
             p.pop();
             
-            p.fill(0);
+            p.fill(255);
             p.push();
             p.translate(x2,y2,this.cz);
             p.sphere(this.m2/2);
@@ -125,10 +125,10 @@ const sketch = (p) => {
 
     p.draw = () => {
         p.camera(-800 + p.mouseX,0, -600, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
 
-        p.stroke(0,30);
+        p.stroke(255,80);
         p.line(-3000,-200,0,3000,-200,0);
         p.line(-3000,100,0,3000,100,0);
         for( let i=0; i< pendulums1.length; i++ ) {

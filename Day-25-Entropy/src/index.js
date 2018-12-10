@@ -88,7 +88,7 @@ const sketch = (p) => {
         this.show = function() {
             p.noStroke();
             if (this.stuck && typeof this.hu !== 'undefined') {
-                p.fill(0);
+                p.fill(255);
             } else {
                 p.fill(this.b, 220 - p.dist(this.pos.x, this.pos.y, 0, 0));
             }
@@ -152,7 +152,7 @@ const sketch = (p) => {
     }
     p.draw = () => {
         p.camera(-100, -100, 400 - p.frameCount / 80, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         //p.pointLight(150, 150, 150, 500, 0, 200);
         //p.directionalLight(255,255,255, 0, 1, 0);
         //p.ambientLight(100);
@@ -181,7 +181,7 @@ const sketch = (p) => {
             radius1 *= shrink1;
             walkers1.push(new Walker());
         }
-        p.fill(0);
+        p.fill(255);
         p.sphere(6);
         //p.rotateX(p.HALF_PI);
         /*

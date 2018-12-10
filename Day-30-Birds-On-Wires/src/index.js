@@ -420,7 +420,7 @@ const sketch = (p) => {
     function fog(z) {
         var c = Math.max(50, parseInt(0 + 300 * (z / PYRAMID_TOP)));
         p.noStroke();
-        p.fill(0,255-c);
+        p.fill(255,255-c);
         
     }
     p.setup = () => {
@@ -430,7 +430,7 @@ const sketch = (p) => {
     }
     p.draw = () => {
         p.camera(-100 + p.sin(p.frameCount/50) * 50, 100 + + p.cos(p.frameCount/50) * 50, 600, 0, 0, 0, 0, 1, 0);
-        p.background(240)
+        p.background(0)
 
         //p.rotateY(p.frameCount/100);
         
@@ -443,7 +443,7 @@ const sketch = (p) => {
         
         for(let i=0; i<lines.length;i++) {
             var v = parseInt(225 * lines[i].y / lines[i].z + 225);
-            p.stroke(0,100);
+            p.stroke(255,100);
             p.line(-1000, v, p.width, v);
             p.fill(255,0,0,wcolors[i]);
             p.push();

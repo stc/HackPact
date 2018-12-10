@@ -134,18 +134,18 @@ const sketch = (p) => {
                 this.constrainPoints(c);
             }
             for (let i = 0; i < this.sticks.length; i++) {
-                p.stroke(0, 100);
+                p.stroke(255, 100);
                 p.line(this.sticks[i].p0.x, this.sticks[i].p0.y, this.sticks[i].p1.x, this.sticks[i].p1.y);
             }
 
             for (let i = 0; i < this.points.length; i++) {
                 p.push();
                 p.translate(this.points[i].x,this.points[i].y,0);
-                p.fill(0);
+                p.fill(255);
                 p.noStroke();
                 p.sphere(3);
 
-                p.fill(255,0,0,this.alpha[i]);
+                p.fill(255  ,0,0,this.alpha[i]);
                 p.sphere(4);
                 p.pop();
 
@@ -242,7 +242,7 @@ const sketch = (p) => {
     
     p.draw = () => {
         p.camera(-100, -100, 550, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.translate(-p.width / 2, -p.height/ 2, 0);
         
         mouse1.x = p.map(p.noise(tx1), 0, 1, p.width/2 - p.width/6, p.width/2);
@@ -270,15 +270,15 @@ const sketch = (p) => {
         
         p.push();
         p.translate(0,0,0);
-        p.fill(0,2);
-        p.stroke(0,60);
+        p.noFill();
+        p.stroke(255,160);
         p.box(1000,4,1000);
         p.pop();
         
 
 
-        p.fill(255,100);
-        p.stroke(0,80);
+        p.fill(0,100);
+        p.stroke(255,180);
         //p.rotateY(p.frameCount/1000);
 
         p.push();

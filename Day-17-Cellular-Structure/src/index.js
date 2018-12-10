@@ -81,7 +81,7 @@ const sketch = (p) => {
     let a1, a2;
     p.draw = () => {
         p.camera(0,-500, -4000, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
 
         //p.pointLight(255,255,255, -500, -500, -200);

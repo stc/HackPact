@@ -142,7 +142,7 @@ const sketch = (p5) => {
 	let zp = 0;
 	p5.draw = () => {
 		p5.camera(p5.sin(p5.frameCount/300) * 100, p5.cos(p5.frameCount/300) * 100, 800, 0, 0, 0, 0, 1, 0);
-		p5.background(240);
+		p5.background(0);
 		p5.frameRate(60);
 
 		let targetX = p5.constrain(p5.mouseX + p5.sin(-p5.frameCount/20) * 80,0,p5.width);
@@ -209,7 +209,7 @@ const sketch = (p5) => {
   		}
 
   		p5.noFill();
-  		p5.stroke(0,50);
+  		p5.stroke(255, 50);
   		p5.box(500);
 	}
 }

@@ -66,7 +66,7 @@ const sketch = (p) => {
     }
     p.draw = () => {
         p.camera(150 + p.mouseX/10,-200, -600, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
 
         p.translate(-p.width/2,-p.height/1.8);
@@ -74,13 +74,13 @@ const sketch = (p) => {
 		elements.display();
 
 		for(let i=0; i<5; i++) {
-			p.stroke(0,50);
+			p.stroke(255,100);
 			p.line(-3000, 500 + i*5, 0, 3000, 500 + i * 5, 0);
 		}
 
 		p.translate(0,100,0);
 		for(let i=0; i<5; i++) {
-			p.stroke(0,50);
+			p.stroke(255,100);
 			p.line(-3000, 500 + i*5, 0, 3000, 500 + i * 5, 0);
 		}
        
@@ -159,12 +159,12 @@ const sketch = (p) => {
 	};
 
 	function drawShrinkingCircle(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,this.zPosition, 3000,this.yPosition, this.zPosition);
 
 	  var diameter = size * (1.5 - currentCicleQuartEaseOutRatio[0]);
 	  p.noStroke();
-	  p.fill(0,255-this.zPosition);
+	  p.fill(255,255-this.zPosition);
 	  p.push();
 	  p.translate(this.xPosition, this.yPosition, this.zPosition);
 	  p.sphere(diameter/2);
@@ -175,12 +175,12 @@ const sketch = (p) => {
 	}
 	
 	function drawHittingLine(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,this.zPosition, 3000,this.yPosition, this.zPosition);
 	  var offsetYPosition = -size * 0.25 + size * 0.5 * (1 - currentCicleQuartEaseOutRatio[1]);
 	  p.noStroke();
-	  p.fill(255,150-this.zPosition);
-	  p.stroke(0,255-this.zPosition);
+	  p.fill(0,150-this.zPosition);
+	  p.stroke(255,255-this.zPosition);
 	  p.push();
 	  //p.rotateZ(p.radians(90));
 	  p.translate(this.xPosition, this.yPosition + offsetYPosition+size, -this.zPosition/2);
@@ -191,12 +191,12 @@ const sketch = (p) => {
 	}
 	
 	function drawRotatingCross(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,this.zPosition, 3000,this.yPosition, this.zPosition);
 	  var rotationAngle = p.PI * currentCicleQuartEaseOutRatio[3];
 	  p.noStroke();
-	  p.fill(255,200-this.zPosition);
-	  p.stroke(0,255-this.zPosition);
+	  p.fill(0,200-this.zPosition);
+	  p.stroke(255,255-this.zPosition);
 	  p.push();
 	  p.translate(this.xPosition, this.yPosition, this.zPosition);
 	  p.rotateX(p.radians(90));
@@ -209,12 +209,12 @@ const sketch = (p) => {
 	}
 	
 	function drawRotatingCircles(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,this.zPosition, 3000,this.yPosition, this.zPosition);
 	  var rotationAngle = p.PI * currentCicleQuartEaseOutRatio[4];
 	  var diameter = size * 0.2;
 	  p.noStroke();
-	  p.fill(0,255-this.zPosition);
+	  p.fill(255,255-this.zPosition);
 	  p.push();
 	  p.translate(this.xPosition, this.yPosition, this.zPosition);
 	  p.rotate(rotationAngle);
@@ -226,12 +226,12 @@ const sketch = (p) => {
 	}
 		
 	function drawOrbit(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,this.zPosition, 3000,this.yPosition, this.zPosition);
 	  var angle = -p.HALF_PI + p.TWO_PI * currentCicleQuartEaseOutRatio[5];
 	  var particleSize = size * 0.2;
 	  var radius = size * 0.5;
-	  p.stroke(0,200);
+	  p.stroke(255,200);
 	  p.strokeWeight(1);
 	  p.noFill();
 
@@ -239,7 +239,7 @@ const sketch = (p) => {
 	  p.translate(0,0,this.zPosition);
 	  p.ellipse(this.xPosition, this.yPosition, size, size);
 	  p.noStroke();
-	  p.fill(0,200);
+	  p.fill(255,200);
 	  p.ellipse(this.xPosition + radius * p.cos(angle), this.yPosition + radius * p.sin(angle), particleSize, particleSize);
 	  p.pop();
 	  p.noFill();
@@ -247,13 +247,13 @@ const sketch = (p) => {
 	}
 	
 	function drawPoppingCircles(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,0, 3000,this.yPosition, 0);
 	  var diameter = size * 0.3 * (1 - currentCicleProgressRatio[6]);
 	  var distance = size * 0.7 * (currentCicleQuartEaseOutRatio[6]);
-	  p.stroke(0,255-this.zPosition);
+	  p.stroke(255,255-this.zPosition);
 	  p.strokeWeight(1);
-	  p.fill(255,255-this.zPosition);
+	  p.fill(0,255-this.zPosition);
 	  p.push();
 	  p.translate(this.xPosition, this.yPosition);
 	  p.ellipse(0, 0, 4,4);
@@ -271,12 +271,12 @@ const sketch = (p) => {
 	}
 	
 	function drawJitteringCircle(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,0, 3000,this.yPosition, 0);
 	  var maxDisplacement = size * 0.5 * (1 - currentCicleQuadEaseOutRatio[2]);
 	  var diameter = size * 0.3;
 	  p.noStroke();
-	  p.fill(0,255-this.zPosition);
+	  p.fill(255,255-this.zPosition);
 	  p.ellipse(
 	    this.xPosition + p.random(-maxDisplacement, maxDisplacement),
 	    this.yPosition + p.random(-maxDisplacement, maxDisplacement),
@@ -284,12 +284,12 @@ const sketch = (p) => {
 	    diameter
 	  );
 	  p.noFill();
-	  p.stroke(0,100-this.zPosition);
+	  p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,0, 3000,this.yPosition, 0);
 	}
 	
 	function drawString(size) {
-		p.stroke(0,100-this.zPosition);
+		p.stroke(255,100-this.zPosition);
 	  p.line(-3000,this.yPosition,0, 3000,this.yPosition, 0);
 	  var diameter = size * 0.15;
 	  var amplitude = size * 0.5 * (1 - currentCicleProgressRatio[7]);
@@ -299,7 +299,7 @@ const sketch = (p) => {
 	    yDisplacement = -yDisplacement;
 	  }
 	
-	  p.stroke(0,255-this.zPosition);
+	  p.stroke(255,255-this.zPosition);
 	  p.strokeWeight(1);
 	  p.noFill();
 	  for (var i = 0; i < 3; i++) {

@@ -128,7 +128,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         //p.camera(p.frameCount/5 - 400,-200, -600, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
 
         p.pointLight(150, 150, 150, 500, 0, 100);
@@ -190,16 +190,16 @@ const sketch = (p) => {
           }
         }
 
-        p.stroke(0,200);
+        p.stroke(255,200);
         p.line(ballX,ballY,220,ballX,ballY,0);
         p.noFill();
-        p.stroke(0,100);
+        p.stroke(255,100);
         p.ellipse(ballX,ballY,10,10);
         p.ellipse(ballX,ballY,20,20);
         p.ellipse(ballX,ballY,40,40);
         
         p.noStroke();
-        p.fill(0,200);
+        p.fill(255,200);
         p.push();
         p.translate(ballX,ballY,220);
         p.sphere(15);

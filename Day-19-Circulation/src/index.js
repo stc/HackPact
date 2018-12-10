@@ -58,7 +58,7 @@ const sketch = (p) => {
   		}
 		
   		 show() {
-  		  p.stroke(0);
+  		  p.stroke(255);
   		  p.strokeWeight(1);
   		  p.noFill();
   		  p.beginShape();
@@ -114,7 +114,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         p.camera(p.mouseX - 400,-200, -600, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
 
         let d = w - 0.2 * w;
@@ -122,19 +122,19 @@ const sketch = (p) => {
 		
 		p.translate(-p.width/3, -p.height/2.8);
   		p.noFill();
-  		p.stroke(0);
+  		p.stroke(255);
   		for (let i = 0; i < cols; i++) {
   		  let cx = w + i * w + w / 2;
   		  let cy = w / 2;
   		  p.strokeWeight(1);
-  		  p.stroke(0,50);
+  		  p.stroke(255,50);
   		  p.ellipse(cx, cy, d, d);
   		  let x = r * p.cos(angle * (i + 1) * randomizer);
   		  let y = r * p.sin(angle * (i + 1) * randomizer);
   		  p.strokeWeight(8);
-  		  p.stroke(0);
+  		  p.stroke(255);
   		  p.point(cx + x, cy + y);
-  		  p.stroke(0, 50);
+  		  p.stroke(255, 50);
   		  p.strokeWeight(1);
   		  p.line(cx + x, 0, cx + x, p.height);
 		
@@ -145,19 +145,19 @@ const sketch = (p) => {
   		}
 		
   		p.noFill();
-  		p.stroke(0);
+  		p.stroke(255);
   		for (let j = 0; j < rows; j++) {
   		  let cx = w / 2;
   		  let cy = w + j * w + w / 2;
   		  p.strokeWeight(1);
-  		  p.stroke(0,50);
+  		  p.stroke(255,50);
   		  p.ellipse(cx, cy, d, d);
   		  let x = r * p.cos(angle * (j + 1) * randomizer2);
   		  let y = r * p.sin(angle * (j + 1) * randomizer2);
   		  p.strokeWeight(8);
-  		  p.stroke(0);
+  		  p.stroke(255);
   		  p.point(cx + x, cy + y);
-  		  p.stroke(0, 50);
+  		  p.stroke(255, 50);
   		  p.strokeWeight(1);
   		  p.line(0, cy + y, p.width, cy + y);
 		

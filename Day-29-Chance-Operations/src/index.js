@@ -67,7 +67,7 @@ const sketch = (p) => {
         display() {
             this.lineLength = (this.lineWeight*18) + (this.spacing*4);
             p.strokeWeight (this.lineWeight);
-            p.stroke(0);
+            p.stroke(255);
             for( let i = 0; i < 6; i ++ ) {
                 p.push();
                 p.translate(this.offSet[i],0,0);
@@ -97,10 +97,10 @@ const sketch = (p) => {
     
     p.draw = () => {
         p.camera(-100,-100, 550, 0, 0, 0, 0, 1, 0);
-        p.background(240);  
+        p.background(0);  
         p.translate(-p.width/4, -p.height/3.5);  
 
-        p.stroke(0,40);
+        p.stroke(255,40);
         p.strokeWeight(1);
         p.line(-1000,40,1000,40);
         p.line(-1000,100,1000,100);

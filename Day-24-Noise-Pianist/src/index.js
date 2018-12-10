@@ -59,10 +59,10 @@ const sketch = (p) => {
     let ptick2 = 0;
     p.draw = () => {
         p.camera(0,0, 800, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         //p.smooth();
 
-        p.stroke(255);
+        p.stroke(255,100);
         p.line(0,-3000,0,1000);
 
         p.translate(-p.width/2, p.height/4,0);
@@ -73,7 +73,7 @@ const sketch = (p) => {
             for(let x=0; x<200; x++) { 
                 let noiseVal = p.noise((n+x)*noiseScale,(-n+y)*noiseScale,y*noiseScale); 
                 p.noStroke();
-                p.fill((noiseVal*50)); 
+                p.fill((noiseVal*250)); 
                 if(x==100) {
                     p.fill(255,0,0);
                     if(y==0) {

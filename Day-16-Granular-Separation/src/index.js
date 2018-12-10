@@ -30,7 +30,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         p.camera(0,150, 300, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth(); 
         p.noFill();
 
@@ -51,17 +51,17 @@ const sketch = (p) => {
                     
                 p.fill(col);
                 
-                p.stroke(0,40);
+                p.stroke(255,40);
                 p.line(dotCenter.x, dotCenter.y,(fftValues[x*y] * 2), dotCenter.x, dotCenter.y, -300)
                 p.push();
                 p.push();
                 p.translate(dotCenter.x, dotCenter.y, -300);
-                p.fill(255);
+                p.fill(100,100);
                 p.noStroke();
                 p.sphere(circleSize/4);
                 p.pop();
                 p.translate(dotCenter.x, dotCenter.y, (fftValues[x*y]*2));
-                p.fill(0);
+                p.fill(255);
                 p.sphere(circleSize/8);
                 p.pop();
             }

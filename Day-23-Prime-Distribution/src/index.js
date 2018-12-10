@@ -43,12 +43,12 @@ const sketch = (p) => {
         }
         draw() {
             p.push();
-            p.stroke(0,140);
+            p.stroke(255,140);
             p.line(0,this.id * 8,0,this.num,this.id * 8,0);
             p.translate(0,this.id * 8,0);
             //p.stroke(0);
             p.noStroke();
-            p.fill(0,180);
+            p.fill(255,180);
             p.sphere(3);
             p.translate(this.num,0,0);
             p.sphere(3);
@@ -58,7 +58,7 @@ const sketch = (p) => {
 
             if(this.lifetime<10) {
                 p.push();
-                p.fill(0,180);
+                p.fill(255,180);
                 p.translate(this.counter,this.id * 8, 0);
                 p.sphere(3);
                 p.pop();
@@ -89,7 +89,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         p.camera(p.mouseX - p.width/2,0, 800, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
 
         p.translate(-p.width/2, p.height/6,0);

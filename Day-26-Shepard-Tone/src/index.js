@@ -38,7 +38,7 @@ const sketch = (p) => {
     p.draw = () => {
         p.frameRate(60);
         p.camera(0,0, 600, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
 
         for (let i = 1; i <= oscAmt; i++) {
 
@@ -68,11 +68,11 @@ const sketch = (p) => {
       
       for(let i=0; i<36; i++) {
         p.push();
-        p.stroke(0,180 - p.dist(counters[i],0,0,0));
+        p.stroke(255,180 - p.dist(counters[i],0,0,0));
         p.line(p.sin(p.frameCount / 200 + counters[i]/100) * 150, counters[i], p.cos(p.frameCount / 200 + counters[i]/100) * 150,
             0, counters[i], 0);
         p.noStroke();
-        p.fill(0,180 - p.dist(counters[i],0,0,0));
+        p.fill(255,180 - p.dist(counters[i],0,0,0));
         p.push();
         p.translate(0, counters[i], 0);
         p.sphere(2);
