@@ -44,7 +44,7 @@ const sketch = (p) => {
       'C8' : 'C8.[mp3|ogg]'
     }, {
       'release' : 1,
-      'baseUrl' : '../sounds/'
+      'baseUrl' : './sounds/'
     }).toMaster();
     }
     
