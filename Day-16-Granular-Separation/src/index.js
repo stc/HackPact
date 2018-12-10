@@ -13,7 +13,7 @@ const sketch = (p) => {
 
     var fft = new Tone.FFT(64);
     var player = new Tone.GrainPlayer({
-            "url" : "../sound/tompa.[mp3|ogg]",
+            "url" : "./sound/tompa.[mp3|ogg]",
             "loop" : true,
             "grainSize" : 0.01,
             "overlap" : 0.05,
