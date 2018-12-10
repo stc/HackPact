@@ -27,7 +27,7 @@ const sketch = (p) => {
 				this.pos.y += this.weight;	
 			}
 			if(!this.fade) {
-				p.fill(0);
+				p.fill(255);
 			} else {
 				p.fill(255, 0, 0, this.fadecol);
 				this.fadecol-=4;
@@ -39,7 +39,7 @@ const sketch = (p) => {
 			p.sphere(this.size);
 			p.pop();
 
-			p.stroke(0,100);
+			p.stroke(255,100);
 			p.line(this.startpos.x,this.startpos.y, this.startpos.z, this.startpos.x,0, this.startpos.z);
 		}
 	}
@@ -65,14 +65,14 @@ const sketch = (p) => {
 
 	p.draw = () => {
 		p.camera(p.mouseX, -150, 400, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 		
 		for(let d in drops) drops[d].draw();
 
 		p.push();
 		p.rotateX(p.PI/2);
 		p.noFill(0);
-		p.stroke(0,200);
+		p.stroke(255,200);
 		p.rect(-200,-200,400,400);
 		p.line(0,-200,0,0,200,0);
 		p.translate(0,0,200);

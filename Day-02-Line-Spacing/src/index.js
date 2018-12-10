@@ -25,12 +25,12 @@ const sketch = (p) => {
 			for(let i=0; i<this.num; i++) {
 				p.push();
 				p.translate(this.p1[i].x, this.p1[i].y + this.yoffset, this.p1[i].z);
-				p.fill(0);
+				p.fill(255);
 				p.noStroke();
 				p.sphere(2);	
 				p.pop();
 				if(i<this.num-1) {
-					p.stroke(0,100);
+					p.stroke(255,100);
 					p.line(this.p1[i].x, this.p1[i].y + this.yoffset, this.p1[i].z,this.p1[i+1].x, this.p1[i+1].y + this.yoffset, this.p1[i+1].z)
 				}
 			}
@@ -156,7 +156,7 @@ const sketch = (p) => {
 
 	p.draw = () => {
 		p.camera(0, 0, 400, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 		p.rotateY(p.frameCount/600);
 		s1.draw();
 		s2.draw();

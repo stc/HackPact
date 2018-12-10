@@ -141,7 +141,7 @@ const sketch = (p) => {
 		    if (startNode == latestNodeId) { // Highlight the latest node's edges
 		      p.stroke(255,0,0);
 		  	} else {
-		      p.stroke(0, 40);
+		      p.stroke(255, 40);
 		    }
 		    
 		    for (var j=0; j<graph.edges[i].length; j++) {
@@ -199,7 +199,7 @@ const sketch = (p) => {
 		p.pointLight(150, 150, 150, 500, 0, 200);
 		p.directionalLight(255,255,255, -1, 0, -1);
 		p.ambientLight(100);
-		p.background(240);
+		p.background(0);
 
 		p.rotateY(p.frameCount/30);
   		  		

@@ -22,7 +22,7 @@ const sketch = (p) => {
 			}
 			
 			if(this.state == 0) {
-				p.fill(0);
+				p.fill(80);
 			} else {
 				p.fill(255);
 			}
@@ -84,7 +84,7 @@ const sketch = (p) => {
 		}
 
 		drawArcs() {
-			p.stroke(0,120);
+			p.stroke(255,120);
 			for(let i=0; i<7; i++) {
 				p.line(this.gates[i].pos.x,this.gates[i].pos.y,this.gates[i].pos.z,this.gates[i + i + 1].pos.x,this.gates[i + i + 1].pos.y,this.gates[i + i + 1].pos.z);
 				p.line(this.gates[i].pos.x,this.gates[i].pos.y,this.gates[i].pos.z,this.gates[i + i + 2].pos.x,this.gates[i + i + 1].pos.y,this.gates[i + i + 1].pos.z);
@@ -152,7 +152,7 @@ const sketch = (p) => {
 
 	p.draw = () => {
 		p.camera(p.mouseX - 100, p.mouseY - 100, 600, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 		
 		G1.draw();
 		p.push();

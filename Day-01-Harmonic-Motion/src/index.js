@@ -32,7 +32,7 @@ const sketch = (p) => {
 
 	p.draw = () => {
 		p.camera(p.mouseX, 0, 400, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 		
 		for(let i=0; i<num; i++) {
 			let tempo = (i + 1) * p.frameCount * 0.008;
@@ -43,13 +43,15 @@ const sketch = (p) => {
 				Math.cos(tempo) * (i+1) * 10);
 
 			p.noStroke();
-			p.fill(colors[i],0,0);
+			p.fill(255);
+			p.sphere(3);
+			p.fill(255,0,0,colors[i]);
 			p.sphere(3);
 			
 			p.pop();
 
 			p.push();
-			p.stroke(0,40);
+			p.stroke(255,50);
 			p.noFill();
 			p.rotateY(p.PI/2);
 			p.translate(0,0,(i - 5) * 40);
