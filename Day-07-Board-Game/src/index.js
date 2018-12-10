@@ -521,13 +521,13 @@ const sketch = (p) => {
 	p.draw = () => {
 		p.frameRate(60);
 		p.camera(p.frameCount/10 - 100, -100, 600, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 
 		p.rotateX(p.radians(60));
 		p.rotateZ(p.frameCount / 500);
 
 		
-		p.stroke(0,40);
+		p.stroke(255,40);
 		p.line(0,-150,0,150);
 		p.line(-150,0,150,0);
 		p.line(-150,-100,150,-100);

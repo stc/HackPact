@@ -59,7 +59,7 @@ const sketch = (p) => {
     display() {
       // Draw a triangle rotated in the direction of velocity
       let theta = this.velocity.heading() + p.PI / 2;
-      p.fill(0,100);
+      p.fill(255,30);
       p.noStroke(0);
       p.push();
       p.translate(this.position.x, this.position.y);
@@ -72,7 +72,7 @@ const sketch = (p) => {
       //p.vertex(-this.r, this.r * 2);
       //p.vertex(this.r, this.r * 2);
       //p.endShape(p.CLOSE);
-      p.box(1,50,1);
+      p.box(1,20,1);
       p.fill(255);
       p.sphere(2);
       p.pop();
@@ -140,7 +140,7 @@ const sketch = (p) => {
       let arrowsize = 4;
       // Translate to location to render vector
       p.translate(x, y);
-      p.stroke(200, 100);
+      p.stroke(255, 10);
       // Call vector heading function to get direction (note that pointing to the right is a heading of 0) and rotate
       p.rotate(v.heading());
       // Calculate length of vector & scale it to be bigger or smaller if necessary
@@ -196,7 +196,7 @@ autoFilter.start()
   p.draw = () => {
     p.frameRate(60);
 		p.camera(0, -100, 800, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 
     p.translate(-p.width/2,-p.height/2,0);
     p.rotateX(p.PI/4);

@@ -72,7 +72,7 @@ const sketch = (p) => {
     let notes = [54+pc,50+pc,46+pc,45+pc,43+pc,40+pc,38+pc,34+pc,30+pc,26+pc,25+pc,23+pc,10+pc,18+pc,14+pc];
     p.draw = () => {
         p.camera(p.cos(p.frameCount/80) * 50, -50 + p.sin(p.frameCount/120) * 50, 400, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth(); 
 
         let offset = 30;
@@ -111,7 +111,7 @@ const sketch = (p) => {
 
                 if(i== 0 && j == 0) {
                     p.noStroke();
-                    p.fill(0,180);
+                    p.fill(255,180);
                     p.push();
                     p.translate(i * offset, j * offset, -10);
                     //p.rotateZ(p.radians(45));
@@ -120,7 +120,7 @@ const sketch = (p) => {
                 }
 
                 if(grid[j][i] == "Obstacle") {
-                    p.fill(0,180);
+                    p.fill(255,180);
                     p.push();
                     p.stroke(0);
                     p.translate(i * offset, j * offset, -0);
@@ -170,12 +170,12 @@ const sketch = (p) => {
 
         for(let i=0; i< p.ceil(index); i++) {
             p.strokeWeight(2);
-            p.stroke(0,100);
+            p.stroke(255,255);
             if(i<nodes.length-1) {
                 p.line(nodes[i].x,nodes[i].y,nodes[i].z,nodes[i+1].x,nodes[i+1].y,nodes[i+1].z);
                 p.noStroke();
                 p.push();
-                p.fill(0, solutionAlpha[i]);
+                p.fill(255, solutionAlpha[i]);
                 p.translate(nodes[i+1].x,nodes[i+1].y,nodes[i+1].z);
                 p.sphere(3);
                 p.pop();
@@ -201,7 +201,7 @@ const sketch = (p) => {
                 if(index > solution.length) index = solution.length;
                 if(index == solution.length) {
                     p.strokeWeight(2);
-                    p.stroke(0,100);
+                    p.stroke(255,255);
                     p.line(nodes[nodes.length-1].x,nodes[nodes.length-1].y,nodes[nodes.length-1].z,(gridSize-1) * offset, (gridSize-1) * offset, -10);
                     p.strokeWeight(1);
                 }

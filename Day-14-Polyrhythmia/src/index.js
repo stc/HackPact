@@ -28,18 +28,18 @@ const sketch = (p) => {
             //p.rotateZ(this.rotation + this.counter * (18 - this.sequence.length) / 50);
             //p.rotateX(this.id * 30);
             p.noFill();
-            p.stroke(0,30);
+            p.stroke(255,30);
             p.push();
             //p.rotateY(p.radians(90));
-            p.line(0,-this.r + 10,0,0,-this.r - 10,0);
-            p.line(0,-this.r,-100,0,-this.r,100);
+            //p.line(0,-this.r + 10,0,0,-this.r - 10,0);
+            //p.line(0,-this.r,-100,0,-this.r,100);
             p.pop();
             //p.ellipse(0,0, this.d, this.d);
 
-            p.stroke(0,40);
+            p.stroke(255,40);
             p.arc(0,0, this.d, this.d, p.PI + p.PI/3 + p.PI/3, p.TWO_PI * 2);
             p.arc(0,0, this.d, this.d, p.PI, p.PI + p.PI/3);
-            p.stroke(0,160);
+            p.stroke(255,160);
             p.arc(0,0, this.d, this.d, 0, p.PI);
             p.arc(0,0, this.d, this.d, p.PI + p.PI/3, p.PI + p.PI/3 + p.PI/3);
 
@@ -50,6 +50,8 @@ const sketch = (p) => {
                 //p.translate( p.sin( step * i + this.counter) * this.r, p.cos( step * i + this.counter) * this.r, 0 );
                 p.translate( p.sin( step * i - p.millis() / (this.sequence.length * 100.0))* this.r, p.cos( step * i - p.millis() / (this.sequence.length * 100.0))* this.r);
                 p.noStroke();
+                p.fill(255);
+                p.sphere(this.sphereSizes[i]);
                 if(this.sequence[i] == 0) {
                     //p.fill(255,100);
                 } else {
@@ -136,7 +138,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         p.camera(100,0, 500, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
         
         r0.draw();

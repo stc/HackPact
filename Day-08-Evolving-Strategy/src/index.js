@@ -129,7 +129,7 @@ class Pipe {
     p.noStroke();
     p.fill(255,30);
     p.strokeWeight(3);
-    p.stroke(0,200);
+    p.stroke(255,200);
     p.push();
     //p.rect(this.x, 0, this.w, this.top);
     p.translate(this.x + this.w/2,this.top/2,0);
@@ -194,7 +194,7 @@ class Bird {
   show() {
     p.fill(255, 100);
     p.noStroke();
-    p.fill(0);
+    p.fill(255);
     p.push();
     p.translate(this.x, this.y,0);
     p.sphere(this.r);
@@ -372,12 +372,12 @@ class Bird {
 		
 		p.frameRate(60);
 		p.camera(0, 0, 1500, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 
 
 
 		p.rotateX(p.radians(20));
-		p.fill(255,100);
+		p.fill(255,30);
 		p.rect(-2000,-400,4000,800);
 		p.fill(255,0,0, c);
 		p.stroke(0,100);

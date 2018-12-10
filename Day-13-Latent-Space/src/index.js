@@ -115,7 +115,7 @@ const sketch = (p) => {
 
     p.draw = () => {
         p.camera(-100, -400, 400, 0, 0, 0, 0, 1, 0);
-        p.background(240);
+        p.background(0);
         p.smooth();
         p.translate(-400, -300, 0);
 

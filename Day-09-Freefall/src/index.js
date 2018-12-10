@@ -31,8 +31,9 @@ const sketch = (p) => {
     this.body = world.CreateBody(bd).CreateFixture(fd);
   
     this.display = function() {
-      p.fill(255,100);
-      p.stroke(0,100);
+      p.strokeWeight(2);
+      p.fill(0,100);
+      p.stroke(255,200);
       p.push();
       p.translate(this.x,this.y,0);
       p.box(this.w,this.h,100);
@@ -108,7 +109,7 @@ const sketch = (p) => {
       //p.rotate(a);
       p.noStroke();
       //p.rect(0,0,this.w,this.h);
-      p.fill(0);
+      p.fill(255);
       p.sphere(this.r);
       p.pop();
     }
@@ -164,10 +165,10 @@ const sketch = (p) => {
 
 		p.frameRate(60);
 		p.camera(p.mouseX - p.width/2, -200, 500, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 
     p.noFill();
-    p.stroke(0,100);
+    p.stroke(255,100);
     p.box(1000);
 
     p.translate(-p.width/2, -p.height/2, 0);

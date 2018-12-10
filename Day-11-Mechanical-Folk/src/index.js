@@ -20,7 +20,7 @@ const sketch = (p) => {
  			this.easedVal += dy * this.easing;
 			
 			for (let i=0; i<4; i++) {
-				p.stroke(0,200);
+				p.stroke(255,200);
 				p.strokeWeight(1);
 				p.noFill();
 				//p.line(- this.easedVal/2,this.y,this.z+i*10,this.x+this.easedVal/2,this.y,this.z+i*10);
@@ -57,7 +57,7 @@ const sketch = (p) => {
 			this.alpha = 0;
 		}
 		draw() {
-			p.fill(0);
+			p.fill(255);
 			p.noStroke();
 			p.push();
 			p.translate(this.x,this.y,0);
@@ -149,13 +149,13 @@ const sketch = (p) => {
 
 	p.draw = () => {
 		p.camera(200, -100, 900, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 		p.smooth();
 
 		p.push();
 		p.rotateY(-p.frameCount/3000);
 		p.noFill();
-		p.stroke(0,100);
+		p.stroke(255,180);
 		p.strokeWeight(2);
 		p.box(3000,2000,4000);
 		
@@ -164,7 +164,7 @@ const sketch = (p) => {
 			
 		}
 
-		p.stroke(0,40);
+		p.stroke(255,100);
 		p.line(0,-4000,0,0,4000,0);
 		b.draw();
 		if(b.y > plucks[0].y && plucks[0].canPlay) playNext();

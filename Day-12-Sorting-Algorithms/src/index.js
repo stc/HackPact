@@ -72,7 +72,7 @@ const sketch = (p) => {
 
 	p.draw = () => {
 		p.camera(200, -400, 1000, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 		p.smooth();
 
 		p.strokeWeight(2);
@@ -83,7 +83,7 @@ const sketch = (p) => {
 
 		for(let i=0; i< count; i++) {
 			p.ambientMaterial(255);
-			p.stroke(0,200);
+			p.stroke(255,200);
 			if(cElementA == i) {
 				p.ambientMaterial(255,0,0);
 				p.stroke(255,0,0);
@@ -103,7 +103,7 @@ const sketch = (p) => {
 		p.rotateX(p.radians(-90));
 		for(let i=0; i< count; i++) {
 			p.ambientMaterial(255);
-			p.stroke(0,200);
+			p.stroke(255,200);
 			if(cElementB == i) {
 				p.ambientMaterial(255,0,0);
 				p.stroke(255,0,0);

@@ -19,18 +19,18 @@ const sketch = (p) => {
   				let l = 50*p.sin(p.radians(i-this.h));
     			let r =  4*p.sin(p.radians(i+this.h));
     			let po =  4*p.sin(p.PI/4+p.radians(i-this.h));
-    			p.stroke(0, 60); 
+    			p.stroke(255, 60); 
     			p.line(i*w, 0, i*w, _height/2+l);
     			p.noStroke();
-    			p.fill(60);
+    			p.fill(160);
     			p.push();
     			p.translate(i*w, _height/2+l,0);
     			p.box(r/2);
     			p.pop();
-    			p.stroke(0,60);
+    			p.stroke(100,60);
     			p.line(i*w+5, _height, i*w+5, _height/2-l); 
     			p.noStroke();
-    			p.fill(60);
+    			p.fill(160);
     			p.push();
     			p.translate(i*w+5, _height/2-l,0);
     			p.box(po/2);
@@ -74,7 +74,7 @@ const sketch = (p) => {
 	p.draw = () => {
 		p.frameRate(60);
 		p.camera(100, -100, 600, 0, 0, 0, 0, 1, 0);
-		p.background(240);
+		p.background(0);
 		p.fill(255,100);
 		p.noStroke();
 		p.rect(-2000,-2000,4000,1960);
