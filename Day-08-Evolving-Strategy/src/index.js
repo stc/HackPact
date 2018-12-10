@@ -8,9 +8,10 @@ const sketch = (p) => {
 	let c = 0;
 
 	function resetGame() {
-  counter = 0;
-  // Resetting best bird score to 0
-  if (bestBird) {
+    counter = 0;
+  
+    // Resetting best bird score to 0
+    if (bestBird) {
     bestBird.score = 0;
   }
   pipes = [];
