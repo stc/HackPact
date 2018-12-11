@@ -71,6 +71,11 @@ const sketch = (p) => {
 			colors[i] -= 4;
 		}
 	}
+	p.keyPressed = () => {
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+	}
 }
 
 export default sketch;

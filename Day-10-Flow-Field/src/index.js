@@ -211,6 +211,12 @@ autoFilter.start()
       vehicles2[i].run();
     }
   }
+
+  p.keyPressed = () => {
+    if(p.key == 'm') {
+      p.save(Date.now() + ".jpg");
+    }
+  }
 }
 
 export default sketch;

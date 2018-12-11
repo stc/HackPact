@@ -115,6 +115,12 @@ const sketch = (p) => {
             record = false;
         }
 
+        p.keyPressed = () => {
+           if(p.key == 'm') {
+                p.save(Date.now() + ".jpg");
+            }
+        }
+
         function rotate2D(v, theta) {
             let xTemp = v.x;
             v.x = v.x * p.cos(theta) - v.y * p.sin(theta);

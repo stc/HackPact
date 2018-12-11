@@ -90,6 +90,12 @@ const sketch = (p) => {
 		field.draw();
 		p.pop();
 	}
+
+	p.keyPressed = () => {
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+	}
 }
 
 export default sketch;

@@ -470,6 +470,12 @@ const sketch = (p) => {
         }
     }
 
+    p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    }
+
     function circle(x, y, r) {
         p.push();
         p.translate(x, y, r);

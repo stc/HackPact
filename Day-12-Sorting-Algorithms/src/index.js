@@ -82,16 +82,17 @@ const sketch = (p) => {
 		p.rotateY(-p.radians(30));
 
 		for(let i=0; i< count; i++) {
-			p.ambientMaterial(255);
+			p.fill(255,240);
 			p.stroke(255,200);
 			if(cElementA == i) {
-				p.ambientMaterial(255,0,0);
+				p.fill(255,0,0);
 				p.stroke(255,0,0);
 			}
 			p.push();
 
 			p.line(i * 50 - 700, 0, -200, i * 50 - 700, -resultA[i] * 20, -200);
 			p.translate(i * 50 - 700, 0, -200);
+			p.stroke(100);
 			p.box(20);
 			p.translate(0,-resultA[i] * 20,0);
 			p.box(20);
@@ -102,7 +103,7 @@ const sketch = (p) => {
 
 		p.rotateX(p.radians(-90));
 		for(let i=0; i< count; i++) {
-			p.ambientMaterial(255);
+			p.fill(255,240);
 			p.stroke(255,200);
 			if(cElementB == i) {
 				p.ambientMaterial(255,0,0);
@@ -112,6 +113,7 @@ const sketch = (p) => {
 
 			p.line(i * 50 - 700, 0, 200, i * 50 - 700, -resultB[i] * 20, 200);
 			p.translate(i * 50 - 700, 0, 200);
+			p.stroke(100);
 			p.box(20);
 			p.translate(0,-resultB[i] * 20,0);
 			p.box(20);
@@ -120,7 +122,12 @@ const sketch = (p) => {
 	}
 
 	p.keyPressed = () => {
-		location.reload();
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+		if(p.key == ' ') {
+			location.reload();
+		}
 	}
 
 	function shuffle(a) {

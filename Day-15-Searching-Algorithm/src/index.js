@@ -218,6 +218,9 @@ const sketch = (p) => {
     }
 
      p.keyPressed = () => {
+            if(p.key == 'm') {
+                p.save(Date.now() + ".jpg");
+            }
             if(p.key == 's') {
                 canRun = true;
                 findShortestPath([0,0], grid);

@@ -101,6 +101,12 @@ const sketch = (p) => {
             primes[i].draw();
         }
     }
+
+    p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    }
 }
 export default sketch;
 new p5(sketch);

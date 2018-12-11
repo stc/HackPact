@@ -73,6 +73,9 @@ const sketch = (p) => {
     }
 
     p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
         loaded = true;
         player.start();
     }

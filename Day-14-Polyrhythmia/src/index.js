@@ -149,6 +149,11 @@ const sketch = (p) => {
         r5.draw();
         r6.draw();
     }
+    p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    }
 }
 export default sketch;
 new p5(sketch);

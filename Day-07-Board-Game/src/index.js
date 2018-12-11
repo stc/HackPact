@@ -537,7 +537,7 @@ const sketch = (p) => {
 		p.line(100,-150,100,150);
 		//p.line(-100,-150,-100,150);
 		
-		p.fill(255,30);
+		p.fill(255,100);
 		p.stroke(0,40);
 		p.rect(-200,-200,400,400);
 		p.push();
@@ -602,8 +602,9 @@ const sketch = (p) => {
 	}
 
 	p.keyPressed = () => {
-		
-		
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
 	}
 }
 

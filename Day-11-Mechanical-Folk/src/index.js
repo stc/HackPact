@@ -183,6 +183,12 @@ const sketch = (p) => {
 		p.pop();
 	}
 
+	p.keyPressed = () => {
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+	}
+
 	let counter = 0;	
 	function playNext() {
 		if(counter == 0) {

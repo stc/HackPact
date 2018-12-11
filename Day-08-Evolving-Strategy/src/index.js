@@ -368,6 +368,12 @@ class Bird {
 			"volume" : -30
 		}).toMaster()
 
+  p.keyPressed = () => {
+    if(p.key == 'm') {
+      p.save(Date.now() + ".jpg");
+    }
+  }
+  
 	p.draw = () => {
 		
 		p.frameRate(60);

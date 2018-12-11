@@ -162,6 +162,12 @@ const sketch = (p) => {
 		s2.draw();
 		s3.draw();
 	}
+
+	p.keyPressed = () => {
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+	}
 }
 
 export default sketch;

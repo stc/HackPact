@@ -199,6 +199,12 @@ const sketch = (p) => {
     
     ptick1 = tick1;
 	}
+
+  p.keyPressed = () => {
+    if(p.key == 'm') {
+      p.save(Date.now() + ".jpg");
+    }
+  }
 }
 
 export default sketch;

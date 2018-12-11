@@ -208,6 +208,12 @@ const sketch = (p) => {
                     walkers2.push(new Walker());
                 } */
     }
+
+    p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    }
 }
 export default sketch;
 new p5(sketch);

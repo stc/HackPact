@@ -247,6 +247,10 @@ const sketch = (p) => {
 
 
 	p.keyPressed = () => {
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+	
 		cRandZ = p.random(-200,200);
 		cRandX = p.random(-200,200);
   		let keyIndex = keyOrder.indexOf(p.key);

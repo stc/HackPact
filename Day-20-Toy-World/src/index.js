@@ -95,6 +95,11 @@ const sketch = (p) => {
     	if(p.key == '6') triggers[5] = 0;
     	if(p.key == '7') triggers[6] = 0;
     	if(p.key == '8') triggers[7] = 0;
+
+       if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    
     }
 
     function updateCurrentCicleProgress() {

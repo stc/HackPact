@@ -115,6 +115,12 @@ const sketch = (p) => {
         }
     }
 
+    p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    }
+
     function generateHexagrams(padding, lineWeight) {
         let index = 0;
         for ( let y=0; y<8; y++) {

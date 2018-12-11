@@ -234,6 +234,13 @@ const sketch = (p) => {
 
         if(alpha>20) alpha -=20;
     }
+
+    p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    }
+    
     p.mousePressed = () => {
         offset += 2;
         if (offset > numInterpolations - 1) {

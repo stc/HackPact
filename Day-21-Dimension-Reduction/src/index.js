@@ -2,32 +2,32 @@ import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
 import tsnejs from 'tsne';
 
-const sketch = (p5) => {
+const sketch = (p) => {
 	class DataPoint {
 		constructor() {
-  			this.pos = p5.createVector(0,0,0);
+  			this.pos = p.createVector(0,0,0);
   			this.label = "";
-  			this.color = p5.color(255);
+  			this.color = p.color(255);
   			this.size = 1;
   			this.trig = 0;
   			this.canTrig = true;
 		}
 
   		drawPoint(){
-  		  p5.noStroke();
-  		  p5.fill(this.color);
-  		  p5.ambientMaterial(this.r, this.r,this.r);
-  		  p5.push();
-  		  p5.translate(this.pos.x, this.pos.y, this.pos.z);
-  		  //p5.rotateX(this.size,0,0);
-  		  p5.box(this.size);
+  		  p.noStroke();
+  		  p.fill(this.color);
+  		  p.ambientMaterial(this.r, this.r,this.r);
+  		  p.push();
+  		  p.translate(this.pos.x, this.pos.y, this.pos.z);
+  		  //p.rotateX(this.size,0,0);
+  		  p.box(this.size);
 
-  		  p5.fill(255,0,0,this.trig);
-  		  p5.box(this.size * 1.5);
+  		  p.fill(255,0,0,this.trig);
+  		  p.box(this.size * 1.5);
   		  
   		  if(this.trig == 255) {
   		  	if(this.canTrig) {
-  		  		let rnd = p5.floor(p5.random(10));
+  		  		let rnd = p.floor(p.random(10));
   		  		synths[ rnd ].envelope.attack = this.r/1000;
   		  		synths[ rnd ].triggerAttackRelease( Tone.Midi( ((255/20 + 2) - this.size + 2) * 10 ).toFrequency(), this.size/500);
   		  		this.canTrig = false;
@@ -37,7 +37,7 @@ const sketch = (p5) => {
 
   		  this.trig-=100;
 
-  		  p5.pop();
+  		  p.pop();
 
 
   		}
@@ -48,7 +48,7 @@ const sketch = (p5) => {
   		}
 		
   		setCol(r,g,b,a) {
-  			this.color = p5.color(r,g,b,a);
+  			this.color = p.color(r,g,b,a);
   			this.r = r;
   			this.g = g;
   			this.b = b;
@@ -108,9 +108,9 @@ const sketch = (p5) => {
                 "portamento" : 0.01 
             }).connect(freeverb));
 	}
-	p5.setup = () => {
-		let canvas = p5.createCanvas(800,800, p5.WEBGL);
-		p5.smooth();
+	p.setup = () => {
+		let canvas = p.createCanvas(800,800, p.WEBGL);
+		p.smooth();
 
 		let opt = {}
   		opt.epsilon = 30; // epsilon is learning rate (10 = default)
@@ -122,9 +122,9 @@ const sketch = (p5) => {
   		for(let i=0; i<num; i++) {
   		  
   		  // generating random data
-  		  let f1 = p5.random(255);
-  		  let f2 = p5.random(255);
-  		  let f3 = p5.random(255);
+  		  let f1 = p.random(255);
+  		  let f2 = p.random(255);
+  		  let f3 = p.random(255);
 		
   		  // add generated data to an array of feature vectors
   		  features.push( [f1, f2, f3] ); // feature vector's length (components) can be selected freely
@@ -140,21 +140,21 @@ const sketch = (p5) => {
 	}
 
 	let zp = 0;
-	p5.draw = () => {
-		p5.camera(p5.sin(p5.frameCount/300) * 100, p5.cos(p5.frameCount/300) * 100, 800, 0, 0, 0, 0, 1, 0);
-		p5.background(0);
-		p5.frameRate(60);
+	p.draw = () => {
+		p.camera(p.sin(p.frameCount/300) * 100, p.cos(p.frameCount/300) * 100, 800, 0, 0, 0, 0, 1, 0);
+		p.background(0);
+		p.frameRate(60);
 
-		let targetX = p5.constrain(p5.mouseX + p5.sin(-p5.frameCount/20) * 80,0,p5.width);
+		let targetX = p.constrain(p.mouseX + p.sin(-p.frameCount/20) * 80,0,p.width);
   		let dx = targetX - x;
   		x += dx * easing;
 
-  		let targetY = p5.constrain(p5.mouseY + p5.cos(-p5.frameCount/20) * 80,0,p5.height);
+  		let targetY = p.constrain(p.mouseY + p.cos(-p.frameCount/20) * 80,0,p.height);
   		let dy = targetY - y;
   		y += dy * easing;
 		
-		playHeadx = p5.map(x,0,p5.width,-250,250);
-		playHeady = p5.map(y,0,p5.height,-250,250);
+		playHeadx = p.map(x,0,p.width,-250,250);
+		playHeady = p.map(y,0,p.height,-250,250);
 		
 		/*if(playHeadx > 250) {
 			playHeadx = -250;
@@ -165,34 +165,34 @@ const sketch = (p5) => {
 
 		panner.pan.value = playHeadx / 250;
 
-		p5.pointLight(150, 150, 150, 500, 0, 200);
-		//p5.directionalLight(255,255,255, -1, 0, -1);
-		p5.ambientLight(255);
+		p.pointLight(150, 150, 150, 500, 0, 200);
+		//p.directionalLight(255,255,255, -1, 0, -1);
+		p.ambientLight(255);
 
-		//p5.rotateY(p5.sin(p5.frameCount/1000) * p5.PI/4);
-		//p5.rotateX(-p5.frameCount/1000);
+		//p.rotateY(p.sin(p.frameCount/1000) * p.PI/4);
+		//p.rotateX(-p.frameCount/1000);
 
-		zp = p5.sin(p5.frameCount/100) * 250;
-		p5.push();
-		p5.translate(playHeadx,0,0);
-		p5.fill(255,120);
-		p5.noStroke();
-		p5.box(5,500,0);
-		p5.pop();
+		zp = p.sin(p.frameCount/100) * 250;
+		p.push();
+		p.translate(playHeadx,0,0);
+		p.fill(255,120);
+		p.noStroke();
+		p.box(5,500,0);
+		p.pop();
 
-		p5.push();
-		p5.translate(0,playHeady,0);
-		p5.fill(255,120);
-		p5.noStroke();
-		p5.box(500,5,0);
-		p5.pop();
+		p.push();
+		p.translate(0,playHeady,0);
+		p.fill(255,120);
+		p.noStroke();
+		p.box(500,5,0);
+		p.pop();
 
-		p5.push();
-		p5.translate(playHeadx,playHeady,0);
-		p5.fill(255,0,0,40);
-		p5.noStroke();
-		p5.box(5,5,500);
-		p5.pop();
+		p.push();
+		p.translate(playHeadx,playHeady,0);
+		p.fill(255,0,0,40);
+		p.noStroke();
+		p.box(5,5,500);
+		p.pop();
 
 		stepCount++;
   		if(stepCount<600) {
@@ -200,18 +200,24 @@ const sketch = (p5) => {
   		}
 
   		for(let i=0; i< Y.length; i++) {
-    		data[i].setPos( p5.createVector(Y[i][0] * 10, Y[i][1] * 10, Y[i][2] * 10) ).drawPoint();
-    		if(p5.dist(data[i].pos.x,data[i].pos.y,0, playHeadx,playHeady, 0) <= 10) {
+    		data[i].setPos( p.createVector(Y[i][0] * 10, Y[i][1] * 10, Y[i][2] * 10) ).drawPoint();
+    		if(p.dist(data[i].pos.x,data[i].pos.y,0, playHeadx,playHeady, 0) <= 10) {
     			data[i].trig = 255;
     		} else {
     			data[i].canTrig = true;
     		}
   		}
 
-  		p5.noFill();
-  		p5.stroke(255, 50);
-  		p5.box(500);
+  		p.noFill();
+  		p.stroke(255, 50);
+  		p.box(500);
 	}
+
+  p.keyPressed = () => {
+        if(p.key == 'm') {
+            p.save(Date.now() + ".jpg");
+        }
+    }
 }
 
 export default sketch;

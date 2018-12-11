@@ -166,6 +166,12 @@ const sketch = (p) => {
 		p.fill(0,20);
 		p.sphere(8)
 	}
+
+	p.keyPressed = () => {
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+	}
 }
 
 export default sketch;

@@ -97,6 +97,12 @@ const sketch = (p) => {
 			}
 		}
 	}
+
+	p.keyPressed = () => {
+		if(p.key == 'm') {
+			p.save(Date.now() + ".jpg");
+		}
+	}
 }
 
 export default sketch;
