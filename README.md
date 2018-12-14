@@ -19,3 +19,6 @@ A one month experimentation with sound, algorithms, visual music and unconventio
 ### Inspiration
 Indicated per folder. Also, notice that the [Nature of Code](https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js/) by Daniel Shiffman and some excellent ideas on [OpenProcessing](https://www.openprocessing.org/) are always in the scope. Interesting resources can be found also at [Chrome Music Lab](https://musiclab.chromeexperiments.com/) and [Tero Parvianen](https://teropa.info/). && >>> Fluxus @@. Ideas and projects from our group [Binaura](http://binaura.net) are also meriting from these cross-modal sonic traditions 
 
+### Live Demos
+Try out all the sketches [here](https://stc.github.io/HackPact/). Please note, they are quick protos, not optimized for anything 
+
