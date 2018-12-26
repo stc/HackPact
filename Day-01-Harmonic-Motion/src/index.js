@@ -1,5 +1,6 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
 	let num = 10;
@@ -75,6 +76,9 @@ const sketch = (p) => {
 		if(p.key == 'm') {
 			p.save(Date.now() + ".jpg");
 		}
+	}
+	p.mousePressed = () => {
+		StartAudioContext(Tone.context).then(function(){});
 	}
 }
 
