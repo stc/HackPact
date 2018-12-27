@@ -1,6 +1,6 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
-
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
   	var players = { SELF: 'self', OPPONENT: 'opponent', ROOT: 'root' }
@@ -605,6 +605,9 @@ const sketch = (p) => {
 		if(p.key == 'm') {
 			p.save(Date.now() + ".jpg");
 		}
+	}
+	p.mousePressed = () => {
+		StartAudioContext(Tone.context).then(function(){});
 	}
 }
 

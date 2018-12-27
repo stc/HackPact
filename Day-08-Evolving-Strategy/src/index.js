@@ -1,6 +1,7 @@
 import p5 from 'p5';
 import 'p5/lib/addons/p5.dom';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
 	let W = 600;
@@ -503,6 +504,9 @@ class Bird {
   }
 
 	}
+  p.mousePressed = () => {
+    StartAudioContext(Tone.context).then(function(){});
+  }
 }
 
 export default sketch;

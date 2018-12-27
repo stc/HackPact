@@ -1,5 +1,6 @@
 import p5 from 'p5';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
   class Vehicle {
@@ -216,6 +217,9 @@ autoFilter.start()
     if(p.key == 'm') {
       p.save(Date.now() + ".jpg");
     }
+  }
+  p.mousePressed = () => {
+    StartAudioContext(Tone.context).then(function(){});
   }
 }
 

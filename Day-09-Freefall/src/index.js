@@ -1,8 +1,7 @@
 import p5 from 'p5';
 import 'p5/lib/addons/p5.dom';
 import Tone from 'tone';
-
-
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
   class Boundary {
@@ -204,6 +203,9 @@ const sketch = (p) => {
     if(p.key == 'm') {
       p.save(Date.now() + ".jpg");
     }
+  }
+  p.mousePressed = () => {
+    StartAudioContext(Tone.context).then(function(){});
   }
 }
 
