@@ -1,5 +1,7 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
+
 
 const sketch = (p) => {
     let gridSize = 9;
@@ -229,6 +231,10 @@ const sketch = (p) => {
                 location.reload();
             }
         }
+
+    p.mousePressed = () => {
+        StartAudioContext(Tone.context).then(function(){});
+    }
 
     function findShortestPath(startCoordinates, grid) {
             let distanceFromTop = startCoordinates[0];

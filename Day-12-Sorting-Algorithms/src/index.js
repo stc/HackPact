@@ -1,5 +1,7 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
+
 
 const sketch = (p) => {
 	let count = 1 + 20;
@@ -129,6 +131,10 @@ const sketch = (p) => {
 			location.reload();
 		}
 	}
+
+	p.mousePressed = () => {
+    	StartAudioContext(Tone.context).then(function(){});
+  	}
 
 	function shuffle(a) {
     	for (let i = a.length - 1; i > 0; i--) {

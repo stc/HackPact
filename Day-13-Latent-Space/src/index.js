@@ -1,5 +1,7 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
+
 const sketch = (p) => {
     var numInterpolations = 16;
     let alpha = 0;
@@ -242,6 +244,8 @@ const sketch = (p) => {
     }
     
     p.mousePressed = () => {
+        StartAudioContext(Tone.context).then(function(){});
+    
         offset += 2;
         if (offset > numInterpolations - 1) {
             offset = 0;
