@@ -1,5 +1,7 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
+
 const sketch = (p) => {
         let parts;
         let w = 800;
@@ -8,6 +10,7 @@ const sketch = (p) => {
         let noiseoff = 0;
         let record = false;
         let melody = [40 - 12, 43 -12, 45 - 12, 47 -12, 49 -12, 52 - 12, 40, 43, 45, 47, 49, 52, 40 + 12, 43 + 12, 45 + 12, 49 + 12, 50 + 12, 52 + 12, 40 + 24, 43 + 24, 45 + 24, 49 + 24, 50 + 24, 52 + 24, 40 + 36, 43 + 36, 45 + 36, 47 + 36, 49 + 36, 52 + 36, 40 + 48, 43 + 48, 45 + 48, 47 + 48, 49 + 48, 52 + 48,40 + 60, 43 + 60, 45 + 60, 47 + 60, 49 + 48, 52 + 60]
+        let firsttime = true;
 
         function paint(x, y, dx, dy, size, parent, bymouse) {
             let tx = x;
@@ -109,6 +112,10 @@ const sketch = (p) => {
 
         p.mousePressed = () => {
             record = true;
+            if(firsttime) {
+                StartAudioContext(Tone.context).then(function(){});
+                firsttime = false;
+            }
         }
 
         p.mouseReleased = () => {

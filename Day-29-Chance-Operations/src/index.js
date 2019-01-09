@@ -1,5 +1,6 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
     let hexacodes = [];
@@ -132,6 +133,7 @@ const sketch = (p) => {
     }
 
     p.mousePressed = () => {
+        StartAudioContext(Tone.context).then(function(){});  
         //for(let i=0; i<hexagrams.length; i++) {
           let rnd = p.floor(p.random(64));
 
