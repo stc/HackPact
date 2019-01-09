@@ -1,5 +1,7 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
+
 const sketch = (p) => {
 	let elements = [];
 	
@@ -100,6 +102,10 @@ const sketch = (p) => {
             p.save(Date.now() + ".jpg");
         }
     
+    }
+
+    p.mousePressed = () => {
+        StartAudioContext(Tone.context).then(function(){});
     }
 
     function updateCurrentCicleProgress() {

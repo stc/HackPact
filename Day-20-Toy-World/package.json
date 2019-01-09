@@ -19,6 +19,7 @@
   "dependencies": {
     "@tensorflow/tfjs": "^0.13.4",
     "p5": "^0.7.2",
+    "startaudiocontext": "^1.2.1",
     "tfjs": "^0.6.0",
     "tone": "^0.12.80"
   }

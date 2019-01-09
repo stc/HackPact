@@ -1,5 +1,6 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
     var speed = 0.001;
@@ -82,6 +83,7 @@ const sketch = (p) => {
 
     p.mousePressed = () => {
         //sampler.detune = p.ceil(p.random(4)) * 1000;
+        StartAudioContext(Tone.context).then(function(){});
     }
 
     function newVec(x,y) {
