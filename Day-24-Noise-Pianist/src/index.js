@@ -1,5 +1,6 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
     let noiseScale=0.03;
@@ -138,6 +139,10 @@ const sketch = (p) => {
         }
     
         loaded = true;
+    }
+
+    p.mousePressed = () => {
+        StartAudioContext(Tone.context).then(function(){});
     }
 }
 export default sketch;

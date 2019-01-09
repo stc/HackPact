@@ -1,6 +1,7 @@
 import p5 from 'p5/lib/p5.min';
 import Tone from 'tone';
 import tsnejs from 'tsne';
+import StartAudioContext from 'startaudiocontext';
 
 const sketch = (p) => {
 	class DataPoint {
@@ -217,7 +218,10 @@ const sketch = (p) => {
         if(p.key == 'm') {
             p.save(Date.now() + ".jpg");
         }
-    }
+  }
+  p.mousePressed = () => {
+        StartAudioContext(Tone.context).then(function(){});
+  }
 }
 
 export default sketch;
